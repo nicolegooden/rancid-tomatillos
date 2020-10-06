@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import MovieContainer from './MovieContainer';
 import { getMovies } from './apiCalls';
 import './App.css';
 
@@ -14,7 +15,7 @@ class App extends Component {
 
   componentDidMount() {
     getMovies()
-    .then(movies => this.setState({ movies: movies }))
+    .then(allMovies => this.setState({ movies: allMovies.movies }))
     .catch(err => {
       this.setState({  err: 'Sorry, try again later.'});
     })
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <main>
         <Header />
+        <MovieContainer allMovies={this.state.movies} />
       </main>
     );
   }
