@@ -26,7 +26,12 @@ class App extends Component {
     return (
       <main>
         <Header />
-        <MovieContainer allMovies={this.state.movies} />
+        <Route exact path='/'>
+          <MovieContainer allMovies={this.state.movies} />
+        </Route>
+        <Route exact path='/login'>
+          <Login />
+        </Route>
       </main>
     );
   }
