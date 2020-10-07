@@ -32,6 +32,17 @@ class Login extends Component {
             onChange = {this.handleInputChange}
           />
           </React.Fragment>
+          <React.Fragment>
+          <label className='login-label' htmlFor='user-password'>password:</label>
+          <input
+            className='login-input'
+            type='password'
+            placeholder='your password'
+            name='password'
+            value={this.state.password}
+            onChange = {this.handleInputChange}
+          />
+          </React.Fragment>
         </form>
       </section>
     )
