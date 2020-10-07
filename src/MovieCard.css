@@ -1,0 +1,12 @@
+.movie-card-image {
+  height: 15em;
+  width: 100%;
+}
+
+.movie-card {
+  border: solid #c0c2ce;
+  margin: 2em;
+  text-align: center;
+  background-color: #fdf9f9;
+}
+
