@@ -43,6 +43,7 @@ class Login extends Component {
               onChange = {this.handleInputChange}
             />
           </div>
+          <button onClick={props.handleLogin}>Login</button>
         </form>
       </section>
     )
