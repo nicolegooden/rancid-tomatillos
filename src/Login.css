@@ -1,0 +1,24 @@
+.login-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-column-start: 2;
+}
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.email-input-div, .password-input-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.login-input {
+  height: 2em;
+  width: 20em;
+}
+
+/*  */

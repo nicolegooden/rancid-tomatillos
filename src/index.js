@@ -11,7 +11,7 @@ const router = <BrowserRouter>
 
 ReactDOM.render(
   <React.StrictMode>
-    router
+    {router}
   </React.StrictMode>,
   document.getElementById('root')
 );
