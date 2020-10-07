@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './tomato.jpg';
+import './Header.css';
 
 function Header() {
   return (
