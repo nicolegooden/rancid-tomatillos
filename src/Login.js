@@ -18,11 +18,19 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  clearInputs() {
+    this.setState({
+      email: '',
+      password: ''
+    })
+  }
+
   handleLogin = (event) => {
     event.preventDefault();
     getUserData(this.state.email, this.state.password)
     .then(user => this.props.setUser(user))
     .catch(error => alert("NOPE"))
+    this.clearInputs();
   }
 
   render() {
@@ -45,7 +53,7 @@ class Login extends Component {
             <input
               className='login-input'
               type='password'
-              placeholder='your password'
+              placeholder='enter password'
               name='password'
               value={this.state.password}
               onChange = {this.handleInputChange}
