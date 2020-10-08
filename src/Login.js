@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getUserData } from './apiCalls'
 import { Redirect } from 'react-router-dom';
 import './Login.css';
 
@@ -15,6 +16,13 @@ class Login extends Component {
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleLogin = (event) => {
+    event.preventDefault();
+    getUserData(this.state.email, this.state.password)
+    .then(user => this.props.setUser(user))
+    .catch(error => alert("NOPE"))
   }
 
   render() {
@@ -43,7 +51,7 @@ class Login extends Component {
               onChange = {this.handleInputChange}
             />
           </div>
-          <button onClick={props.handleLogin}>Login</button>
+          <button onClick={this.handleLogin}>Login</button>
         </form>
       </section>
     )
