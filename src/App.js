@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import Login from './Login';
 import Header from './Header';
 import MovieContainer from './MovieContainer';
 import { getMovies } from './apiCalls';
@@ -9,8 +11,10 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      err: ''
+      err: '',
+      user: {}
     };
+    this.setUser = this.setUser.bind(this);
   }
 
   componentDidMount() {
@@ -21,11 +25,20 @@ class App extends Component {
     })
   }
 
+  setUser(user){
+    this.setState(user)
+  }
+
   render() {
     return (
       <main>
         <Header />
-        <MovieContainer allMovies={this.state.movies} />
+        <Route exact path='/'>
+          <MovieContainer allMovies={this.state.movies} />
+        </Route>
+        <Route exact path='/login'>
+          <Login setUser={this.setUser}/>
+        </Route>
       </main>
     );
   }
