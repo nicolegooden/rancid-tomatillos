@@ -11,8 +11,10 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      err: ''
+      err: '',
+      user: {}
     };
+    this.setUser = this.setUser.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +25,10 @@ class App extends Component {
     })
   }
 
+  setUser(user){
+    this.setState(user)
+  }
+
   render() {
     return (
       <main>
@@ -31,7 +37,7 @@ class App extends Component {
           <MovieContainer allMovies={this.state.movies} />
         </Route>
         <Route exact path='/login'>
-          <Login />
+          <Login setUser={this.setUser}/>
         </Route>
       </main>
     );
