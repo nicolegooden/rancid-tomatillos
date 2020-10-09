@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getUserData } from './apiCalls'
-import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Route, Redirect, Link } from 'react-router-dom';
 import './Login.css';
 
 
@@ -21,7 +21,8 @@ class Login extends Component {
   clearInputs() {
     this.setState({
       email: '',
-      password: ''
+      password: '',
+      error: ''
     })
   }
 
@@ -29,11 +30,16 @@ class Login extends Component {
     event.preventDefault();
     getUserData(this.state.email, this.state.password)
     .then(user => this.props.setUser(user))
-    .catch(error => alert("NOPE"))
+    .catch(error => this.setState({ error: error }))
     this.clearInputs();
+    //use history prop
+    //create isLoggedIn as state on App
   }
 
   render() {
+    if (this.props.user.name) {
+      return <Redirect to='/' />
+    }
     return (
       <section className='login-container'>
         <form className='login-form'>
