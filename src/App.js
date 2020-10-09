@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './Login';
 import Header from './Header';
 import MovieContainer from './MovieContainer';
@@ -21,23 +21,29 @@ class App extends Component {
     getMovies()
     .then(allMovies => this.setState({ movies: allMovies.movies }))
     .catch(err => {
-      this.setState({  err: 'Sorry, try again later.'});
+      this.setState({  err: err});
     })
   }
 
   setUser(user){
-    this.setState(user)
+    this.setState(user);
   }
 
   render() {
     return (
       <main>
         <Header />
-        <Route exact path='/'>
+        <Route exact path='/'> 
           <MovieContainer allMovies={this.state.movies} />
         </Route>
+        {/* <Route
+         path='/login'
+        render={(props) => (
+        <Login {...props} setUser={this.setUser} />
+  )}
+/> */}
         <Route exact path='/login'>
-          <Login setUser={this.setUser}/>
+          <Login setUser={this.setUser} user={this.state.user}/>
         </Route>
       </main>
     );
