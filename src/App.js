@@ -32,8 +32,8 @@ class App extends Component {
   render() {
     return (
       <main>
-        <Header />
-        <Route exact path='/'> 
+        <Header user={this.state.user}/>
+        <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
         </Route>
         {/* <Route
