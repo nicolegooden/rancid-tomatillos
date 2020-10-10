@@ -3,15 +3,13 @@ import { BrowserRouter as Route, Link } from 'react-router-dom';
 import './tomato.jpg';
 import './Header.css';
 
-function Header() {
-
-  let logButton = <Link to="/login"><button className='log-button'>Log</button></Link>
+function Header(props) {
 
   return (
     <section className='header'>
       <img className='tomato-image' src='./tomato.jpg' alt='basic tomato' />
-      <h1 className='welcome-banner'>Rancid Tomatillos</h1>
-        {logButton}
+      <h1 className='welcome-banner'>{props.determineHeaderText()}</h1>
+        {props.determineLogButtonStatus()}
     </section>
   )
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Login from './Login';
 import Header from './Header';
 import MovieContainer from './MovieContainer';
@@ -29,11 +29,34 @@ class App extends Component {
     this.setState(user);
   }
 
+  determineHeaderText = () => {
+    if (this.state.user.name) {
+      return `Welcome To Rancid Tomatillos, ${this.state.user.name}`
+    } else {
+      return 'Rancid Tomatillos'
+    }
+  }
+
+  logOutUser = () => {
+    this.setState({user: {}})
+  }
+
+  determineLogButtonStatus = () => {
+    if (this.state.user.name) {
+      return <button className='log-button' onClick={this.logOutUser}>Logout</button>
+    } else {
+      return <Link to="/login"><button className='log-button'>Login</button></Link>
+    }
+  }
+
   render() {
     return (
       <main>
-        <Header />
-        <Route exact path='/'> 
+        <Header
+          determineHeaderText={this.determineHeaderText}
+          determineLogButtonStatus={this.determineLogButtonStatus}
+        />
+        <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
         </Route>
         {/* <Route
