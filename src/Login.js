@@ -36,6 +36,10 @@ class Login extends Component {
     //create isLoggedIn as state on App
   }
 
+  componentDidMount() {
+    this.props.updateLoginView()
+  }
+
   render() {
     if (this.props.user.name) {
       return <Redirect to='/' />
