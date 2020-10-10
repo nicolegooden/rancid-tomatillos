@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       movies: [],
       err: '',
-      user: {}
+      user: {},
+      hasLoginView: false
     };
     this.setUser = this.setUser.bind(this);
   }
@@ -41,10 +42,17 @@ class App extends Component {
     this.setState({user: {}})
   }
 
+  updateLoginView = () => {
+    this.setState({hasLoginView: true})
+  }
+
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
       return <button className='log-button' onClick={this.logOutUser}>Logout</button>
-    } else {
+    } else if (this.state.hasLoginView) {
+      return 
+    }
+    else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
     }
   }
@@ -55,6 +63,7 @@ class App extends Component {
         <Header
           determineHeaderText={this.determineHeaderText}
           determineLogButtonStatus={this.determineLogButtonStatus}
+          updateLoginView={this.updateLoginView}
         />
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
@@ -66,7 +75,11 @@ class App extends Component {
   )}
 /> */}
         <Route exact path='/login'>
-          <Login setUser={this.setUser} user={this.state.user}/>
+          <Login 
+            setUser={this.setUser} 
+            user={this.state.user}
+            updateLoginView={this.updateLoginView}
+          />
         </Route>
       </main>
     );
