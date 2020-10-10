@@ -37,30 +37,25 @@ class App extends Component {
     }
   }
 
-  determineLogButtonText = () => {
-    if (this.state.user.name) {
-      return 'Logout'
-    } else {
-      return 'Login'
-    }
+  logOutUser = () => {
+    this.setState({user: {}})
   }
 
-  // determineHeaderText = () => {
-  //   if (this.state.user.name) {
-  //     let headerText = `Welcome To Rancid Tomatillos, ${this.state.user.name}`
-  //     let logButtonText = 'Logout'
-  //
-  //   } else {
-  //     let headerText = 'Rancid Tomatillos'
-  //     let logButtonText = 'Login'
-  //     let logButton = <Link to="/login"><button className='log-button'>{logButtonText}</button></Link>
-  //   }
-  // }
+  determineLogButtonStatus = () => {
+    if (this.state.user.name) {
+      return <button className='log-button' onClick={this.logOutUser}>Logout</button>
+    } else {
+      return <Link to="/login"><button className='log-button'>Login</button></Link>
+    }
+  }
 
   render() {
     return (
       <main>
-        <Header logButton={this.logButton} headerText={this.headerText}/>
+        <Header
+          determineHeaderText={this.determineHeaderText}
+          determineLogButtonStatus={this.determineLogButtonStatus}
+        />
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
         </Route>
