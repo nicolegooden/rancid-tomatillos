@@ -1,0 +1,5 @@
+.all-movie-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #e5e6eb;
+}
