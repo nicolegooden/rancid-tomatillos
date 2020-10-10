@@ -39,11 +39,13 @@ class App extends Component {
   }
 
   logOutUser = () => {
-    this.setState({user: {}})
+    this.setState({user: {}, hasLoginView: false})
   }
 
   updateLoginView = () => {
-    this.setState({hasLoginView: true})
+    if (!this.state.user.name) {
+      this.setState({hasLoginView: true})
+    }
   }
 
   determineLogButtonStatus = () => {
@@ -63,7 +65,6 @@ class App extends Component {
         <Header
           determineHeaderText={this.determineHeaderText}
           determineLogButtonStatus={this.determineLogButtonStatus}
-          updateLoginView={this.updateLoginView}
         />
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
