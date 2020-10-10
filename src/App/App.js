@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      err: '',
+      error: '',
       user: {},
       hasLoginView: false
     };
@@ -21,8 +21,8 @@ class App extends Component {
   componentDidMount() {
     getMovies()
     .then(allMovies => this.setState({ movies: allMovies.movies }))
-    .catch(err => {
-      this.setState({  err: err});
+    .catch(error => {
+      this.setState({  error: error});
     })
   }
 

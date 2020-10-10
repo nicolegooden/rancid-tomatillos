@@ -1,8 +1,8 @@
    export const getMovies = () => {
         return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
         .then(response => response.json())
-        .catch(err => {
-            console.log('err', err);
+        .catch(error => {
+            console.log('error', error);
             alert('Oops, no movies to show right now!');
         })
     }
@@ -20,6 +20,6 @@
       })
       .then(response => response.json())
       // .then(response => console.log(response))
-      .catch(err => console.log(err))
+      .catch(error => console.log(error))
     }
 //
