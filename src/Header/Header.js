@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Route, Link } from 'react-router-dom';
-import './tomato.jpg';
+import '../tomato.jpg';
 import './Header.css';
 
 function Header(props) {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Login from './Login';
-import Header from './Header';
-import MovieContainer from './MovieContainer';
-import { getMovies } from './apiCalls';
+import Login from '../Login/Login';
+import Header from '../Header/Header';
+import MovieContainer from '../MovieContainer/MovieContainer';
+import { getMovies } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
