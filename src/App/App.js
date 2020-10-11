@@ -4,7 +4,7 @@ import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { getMovies } from '../apiCalls';
+import { getMovies, getSingleMovie } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      currentMovie: {},
       error: '',
       user: {},
       hasLoginView: false
@@ -25,6 +26,12 @@ class App extends Component {
     .catch(error => {
       this.setState({  error: error});
     })
+  }
+
+  determineSingleMovie = (id) => {
+    getSingleMovie(id)
+    .then(singleMovie => this.setState({currentMovie: singleMovie}))
+    .catch(error => this.setState({ error: error }));
   }
 
   setUser(user){
@@ -68,11 +75,11 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer allMovies={this.state.movies} />
+          <MovieContainer allMovies={this.state.movies} determineSingleMovie={this.determineSingleMovie}/>
         </Route>
 
           <ShowPage />
-      
+
         <Route exact path='/login'>
           <Login
             setUser={this.setUser}
