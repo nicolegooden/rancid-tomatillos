@@ -8,6 +8,7 @@ function MovieContainer(props) {
       posterPath={movie.poster_path}
       title={movie.title}
       averageRating={movie.average_rating}
+      id={movie.id}
     />
   })
   return (
