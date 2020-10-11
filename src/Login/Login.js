@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUserData } from './apiCalls'
+import { getUserData } from '../apiCalls'
 import { BrowserRouter as Route, Redirect, Link } from 'react-router-dom';
 import './Login.css';
 
@@ -34,6 +34,10 @@ class Login extends Component {
     this.clearInputs();
     //use history prop
     //create isLoggedIn as state on App
+  }
+
+  componentDidMount() {
+    this.props.updateLoginView()
   }
 
   render() {

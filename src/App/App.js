@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Login from './Login';
-import Header from './Header';
-import MovieContainer from './MovieContainer';
-import { getMovies } from './apiCalls';
+import Login from '../Login/Login';
+import Header from '../Header/Header';
+import MovieContainer from '../MovieContainer/MovieContainer';
+import { getMovies } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
@@ -11,8 +11,9 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      err: '',
-      user: {}
+      error: '',
+      user: {},
+      hasLoginView: false
     };
     this.setUser = this.setUser.bind(this);
   }
@@ -20,8 +21,8 @@ class App extends Component {
   componentDidMount() {
     getMovies()
     .then(allMovies => this.setState({ movies: allMovies.movies }))
-    .catch(err => {
-      this.setState({  err: err});
+    .catch(error => {
+      this.setState({  error: error});
     })
   }
 
@@ -38,13 +39,22 @@ class App extends Component {
   }
 
   logOutUser = () => {
-    this.setState({user: {}})
+    this.setState({user: {}, hasLoginView: false})
+  }
+
+  updateLoginView = () => {
+    if (!this.state.user.name) {
+      this.setState({hasLoginView: true})
+    }
   }
 
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
       return <button className='log-button' onClick={this.logOutUser}>Logout</button>
-    } else {
+    } else if (this.state.hasLoginView) {
+      return 
+    }
+    else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
     }
   }
@@ -66,7 +76,11 @@ class App extends Component {
   )}
 /> */}
         <Route exact path='/login'>
-          <Login setUser={this.setUser} user={this.state.user}/>
+          <Login 
+            setUser={this.setUser} 
+            user={this.state.user}
+            updateLoginView={this.updateLoginView}
+          />
         </Route>
       </main>
     );
