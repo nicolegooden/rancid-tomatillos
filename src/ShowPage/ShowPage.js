@@ -7,6 +7,13 @@ class ShowPage extends Component {
     super(props)
     this.state = {}
   }
+
+  getGenres = () => {
+    let genreNames = this.state.genres.map(genre => {
+    return <p>genre.name</p>
+    })
+  }
+
   render() {
     return (
       <section className='show-page-container' >
