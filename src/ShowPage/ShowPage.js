@@ -1,40 +1,63 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link }
-import './ShowPage.css'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { getSingleMovie } from '../apiCalls'
+import './ShowPage.css';
+
+
+
+
+// let allGenres;
 
 class ShowPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      currentMovie: {},
+      error: ''
+    }
   }
 
-  getGenres = () => {
-    let genreNames = this.state.genres.map(genre => {
-    return <p>genre.name</p>
-    })
+  componentDidMount() {
+    this.determineSingleMovie(this.props.id)
   }
 
-  render() {
-    return (
-      <section className='show-page-container' >
-        <article className='show-page-basic-information'>
-          <h2 className='show-page-title'>{this.state.title}</h2>
-          <img className='show-page-image' alt='poster for {this.state.title}' src={ this.state.backdropPath }/>
-          <p className='tagline'>{this.state.tagline}</p>
-          <p className='run-time'>{this.state.runTime}</p>
-          <p className='show-page-average-rating'>{this.state.averageRating}</p>
-          <p className='user-rating'>{this.props.userRating}</p>
-        </article>
-        <article className='show-page-additional-information'>
-          <p className='genres'>{this.getGenres()}</p>
-          <p className='overview'>{this.state.overview}</p>
-          <p className='release-date'>{this.state.releaseDate}</p>
-          <p className='budget'>{this.state.budget}</p>
-          <p className='revenue'>{this.state.revenue}</p>
-        </article>
-      </section>
-    )
+
+  determineSingleMovie = (id) => {
+    getSingleMovie(id)
+    .then(singleMovie => this.setState({currentMovie: singleMovie}))
+    .catch(error => this.setState({ error: error }));
   }
-}
+
+    getGenres = () => {
+      return this.props.genres.map(genre => {
+        return <p>genre.name</p>
+      })
+    }
+
+    render() {
+      console.log('showPage props', this.props);
+      console.log("ShowPage")
+      return (
+        <section className='show-page-container' >
+          <article className='show-page-basic-information'>
+            <h2 className='show-page-title'>{this.props.title}title</h2>
+            <img className='show-page-image' alt='poster for {this.props.title}' src={ this.props.backdropPath }/>
+            <p className='tagline'>{this.props.tagline}tagline</p>
+            <p className='run-time'>{this.props.runTime}</p>
+            <p className='show-page-average-rating'>{this.props.averageRating}</p>
+            <p className='user-rating'>{this.props.userRating}</p>
+          </article>
+          <article className='show-page-additional-information'>
+            <p className='genres'>{this.getGenres}</p>
+            <p className='overview'>{this.props.overview}</p>
+            <p className='release-date'>{this.props.releaseDate}</p>
+            <p className='budget'>{this.props.budget}</p>
+            <p className='revenue'>{this.props.revenue}</p>
+          </article>
+        </section>
+      )
+    }
+  }
+
 
 export default ShowPage;
