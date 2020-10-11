@@ -12,7 +12,6 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      currentMovie: {},
       error: '',
       user: {},
       hasLoginView: false
@@ -26,12 +25,6 @@ class App extends Component {
     .catch(error => {
       this.setState({  error: error});
     })
-  }
-
-  determineSingleMovie = (id) => {
-    getSingleMovie(id)
-    .then(singleMovie => this.setState({currentMovie: singleMovie}))
-    .catch(error => this.setState({ error: error }));
   }
 
   setUser(user){
@@ -67,6 +60,8 @@ class App extends Component {
     }
   }
 
+
+
   render() {
     return (
       <main>
@@ -75,11 +70,15 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer allMovies={this.state.movies} determineSingleMovie={this.determineSingleMovie}/>
+          <MovieContainer allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
         </Route>
-        <Route path='/movies/:id'>
-          <ShowPage currentMovie={this.state.currentMovie}/>
-        </Route>
+        <Route path='/movies/:id'
+          render={({ match }) => {
+            const { id } = match.params;
+            const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
+            return <ShowPage {...singleMovie} />
+          }}
+        />
         <Route exact path='/login'>
           <Login
             setUser={this.setUser}
