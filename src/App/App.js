@@ -77,9 +77,9 @@ class App extends Component {
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} determineSingleMovie={this.determineSingleMovie}/>
         </Route>
-
-          <ShowPage />
-
+        <Route path='/movies/:id'>
+          <ShowPage currentMovie={this.state.currentMovie}/>
+        </Route>
         <Route exact path='/login'>
           <Login
             setUser={this.setUser}
