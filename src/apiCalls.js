@@ -22,4 +22,10 @@
       // .then(response => console.log(response))
       .catch(error => console.log(error))
     }
+
+    export const getSingleMovie = (id) => {
+      return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies/{id}')
+      .then(response => response.json())
+      .catch(error => console.log(error))
+    }
 //
