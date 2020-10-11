@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Login from '../Login/Login';
+import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import { getMovies } from '../apiCalls';
@@ -52,7 +53,7 @@ class App extends Component {
     if (this.state.user.name) {
       return <button className='log-button' onClick={this.logOutUser}>Logout</button>
     } else if (this.state.hasLoginView) {
-      return 
+      return
     }
     else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
@@ -69,15 +70,12 @@ class App extends Component {
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} />
         </Route>
-        {/* <Route
-         path='/login'
-        render={(props) => (
-        <Login {...props} setUser={this.setUser} />
-  )}
-/> */}
+
+          <ShowPage />
+      
         <Route exact path='/login'>
-          <Login 
-            setUser={this.setUser} 
+          <Login
+            setUser={this.setUser}
             user={this.state.user}
             updateLoginView={this.updateLoginView}
           />
