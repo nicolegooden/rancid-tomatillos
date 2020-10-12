@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Login from '../Login/Login';
+import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { getMovies } from '../apiCalls';
+import { getMovies, getSingleMovie } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
@@ -52,12 +53,14 @@ class App extends Component {
     if (this.state.user.name) {
       return <button className='log-button' onClick={this.logOutUser}>Logout</button>
     } else if (this.state.hasLoginView) {
-      return 
+      return
     }
     else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
     }
   }
+
+
 
   render() {
     return (
@@ -67,17 +70,18 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer allMovies={this.state.movies} />
+          <MovieContainer allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
         </Route>
-        {/* <Route
-         path='/login'
-        render={(props) => (
-        <Login {...props} setUser={this.setUser} />
-  )}
-/> */}
+        <Route path='/movies/:id'
+          render={({ match }) => {
+            const { id } = match.params;
+            const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
+            return <ShowPage {...singleMovie} />
+          }}
+        />
         <Route exact path='/login'>
-          <Login 
-            setUser={this.setUser} 
+          <Login
+            setUser={this.setUser}
             user={this.state.user}
             updateLoginView={this.updateLoginView}
           />
