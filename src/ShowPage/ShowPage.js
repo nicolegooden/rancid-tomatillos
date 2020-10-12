@@ -24,8 +24,8 @@ class ShowPage extends Component {
 
   determineSingleMovie = (id) => {
     getSingleMovie(id)
-    .then(singleMovie => this.setState({currentMovie: singleMovie}))
-    .catch(error => this.setState({ error: error }));
+      .then(singleMovie => this.setState({currentMovie: singleMovie.movie}))
+      .catch(error => this.setState({ error: error }));
   }
 
     getGenres = () => {
@@ -35,29 +35,28 @@ class ShowPage extends Component {
     }
 
     render() {
-      console.log('showPage props', this.props);
-      console.log("ShowPage")
       return (
-        <section className='show-page-container' >
-          <article className='show-page-basic-information'>
-            <h2 className='show-page-title'>{this.props.title}title</h2>
-            <img className='show-page-image' alt='poster for {this.props.title}' src={ this.props.backdropPath }/>
-            <p className='tagline'>{this.props.tagline}tagline</p>
-            <p className='run-time'>{this.props.runTime}</p>
-            <p className='show-page-average-rating'>{this.props.averageRating}</p>
-            <p className='user-rating'>{this.props.userRating}</p>
-          </article>
-          <article className='show-page-additional-information'>
-            <p className='genres'>{this.getGenres}</p>
-            <p className='overview'>{this.props.overview}</p>
-            <p className='release-date'>{this.props.releaseDate}</p>
-            <p className='budget'>{this.props.budget}</p>
-            <p className='revenue'>{this.props.revenue}</p>
-          </article>
-        </section>
+          <section className='show-page-container' >
+            <article className='show-page-basic-information'>
+              <h2 className='show-page-title'>{this.props.title}title</h2>
+              <img className='show-page-image' alt='poster for {this.props.title}' src={ this.props.backdropPath }/>
+              <p className='tagline'>tagline</p>
+              <p className='run-time'>runtime</p>
+              <p className='show-page-average-rating'>{this.props.averageRating}</p>
+              <p className='user-rating'>{this.props.userRating}</p>
+            </article>
+            <article className='show-page-additional-information'>
+              <p className='genres'>{this.getGenres}</p>
+              <p className='overview'>{this.state.currentMovie.overview}</p>
+              <p className='release-date'>{this.props.releaseDate}</p>
+              <p className='budget'>{this.props.budget}</p>
+              <p className='revenue'>{this.props.revenue}</p>
+            </article>
+          </section>
       )
     }
   }
+
 
 
 export default ShowPage;
