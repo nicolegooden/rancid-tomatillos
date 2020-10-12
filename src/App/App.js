@@ -72,7 +72,7 @@ class App extends Component {
         <Route exact path='/'>
           <MovieContainer allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
         </Route>
-        <Route path='/movies/:id'
+        <Route path='/movie/:id'
           render={({ match }) => {
             const { id } = match.params;
             const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
