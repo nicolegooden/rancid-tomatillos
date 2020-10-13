@@ -9,6 +9,7 @@ function MovieContainer(props) {
       title={movie.title}
       averageRating={movie.average_rating}
       id={movie.id}
+      user={props.user}
     />
   })
   return (
