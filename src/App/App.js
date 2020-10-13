@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Redirect, Route, Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { getMovies, getSingleMovie } from '../apiCalls';
+import { getMovies } from '../apiCalls';
 import './App.css';
 
 
@@ -52,7 +52,7 @@ class App extends Component {
 
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
-      return <button className='log-button' onClick={this.logOutUser}>Logout</button>
+      return <Link to='/'><button className='log-button' onClick={this.logOutUser}>Logout</button></Link>
     } else if (this.state.hasLoginView) {
       return
     }
