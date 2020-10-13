@@ -5,7 +5,13 @@ import './MovieCard.css';
 class MovieCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      userRating: 0
+    }
+  }
+
+  trackRating = (event) => {
+    this.setState({userRating: event.target.value})
   }
 
   render() {
@@ -18,7 +24,7 @@ class MovieCard extends Component {
         {this.props.user.name &&
         <>
         <label htmlFor='Rate Movie'>Rate Movie: </label>
-        <input tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
+        <input onChange={this.trackRating} tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
         <button className='submit-rating-button'>Submit</button><br />
         </>
         }
