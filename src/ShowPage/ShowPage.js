@@ -27,7 +27,7 @@ class ShowPage extends Component {
 
     getGenres = () => {
       return this.state.currentMovie.genres.map(genre => {
-        return <p>{genre}</p>
+        return `${genre} `;
       })
     }
 
