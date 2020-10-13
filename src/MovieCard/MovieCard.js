@@ -8,7 +8,6 @@ import './MovieCard.css';
 
 function MovieCard(props) {
   const path = `/movie/${props.id}`;
-  console.log('card', props)
   return (
     <article className='movie-card'>
       <img className='movie-card-image' alt='single movie card for {props.title}' src={props.posterPath} />

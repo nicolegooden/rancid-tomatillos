@@ -1,11 +1,18 @@
 .header {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   margin: 3em;
   background-color: #cccccc;
 }
 
+.tomato-image {
+  height: 5em;
+  padding-left: 1em;
+}
+
 .log-button {
   width: 8em;
   height: 4em;
+  margin-right: 1em;
+  margin-top: 1em;
 }
