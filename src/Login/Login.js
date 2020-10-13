@@ -32,8 +32,6 @@ class Login extends Component {
     .then(user => this.props.setUser(user))
     .catch(error => this.setState({ error: error }))
     this.clearInputs();
-    //use history prop
-    //create isLoggedIn as state on App
   }
 
   componentDidMount() {
