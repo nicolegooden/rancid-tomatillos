@@ -11,6 +11,7 @@ function MovieCard(props) {
       <p className='movie-average-rating'>Average Rating: { Math.floor(props.averageRating) }</p>
       {props.user.name &&
       <>
+       <label htmlFor='Rate Movie'>Rate Movie: </label>
        <input tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
        <Link to={path}><button className='show-page-button'>Movie Details</button></Link>
       </>
