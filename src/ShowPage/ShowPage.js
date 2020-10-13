@@ -3,9 +3,6 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { getSingleMovie } from '../apiCalls'
 import './ShowPage.css';
 
-
-
-
 // let allGenres;
 
 class ShowPage extends Component {

@@ -7,6 +7,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { getMovies, getSingleMovie } from '../apiCalls';
 import './App.css';
 
+
 class App extends Component {
   constructor() {
     super();
