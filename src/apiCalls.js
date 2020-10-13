@@ -28,4 +28,21 @@
       .then(response => response.json())
       .catch(error => console.log(error))
     }
-//
+
+    export const submitUserRating = (id, movieID, userRating) => {
+      return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          movie_id: movieID,
+          rating: userRating
+        })
+      })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+    }
+
+
+
