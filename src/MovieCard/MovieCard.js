@@ -10,7 +10,11 @@ function MovieCard(props) {
       <h3 className='movie-title'>{ props.title }</h3>
       <p className='movie-average-rating'>Average Rating: { props.averageRating }</p>
       {props.user.name &&
-      <Link to={path}><button className='show-page-button'>Show Me More!</button></Link>}
+      <>
+       <Link to={path}><button className='show-page-button'>Movie Details</button></Link><br />
+       <input type='number' min='1' max='10' className='add-user-rating' placeholder='rate me'/>
+      </>
+      }
     </article>
   )
 }
