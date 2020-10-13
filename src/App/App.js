@@ -46,15 +46,19 @@ class App extends Component {
 
   updateLoginView = () => {
     if (!this.state.user.name) {
-      this.setState({hasLoginView: true})
-    }
+      this.setState({hasLoginView: true}) 
+    } 
+  }
+
+  returnGuestToHomepage = () => {
+    this.setState({hasLoginView: false})
   }
 
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
       return <Link to='/'><button className='log-button' onClick={this.logOutUser}>Logout</button></Link>
     } else if (this.state.hasLoginView) {
-      return
+      return <Link to='/'><button className='log-button' onClick={this.returnGuestToHomepage}>Back to Homepage</button></Link>
     }
     else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
