@@ -27,7 +27,7 @@ class ShowPage extends Component {
 
     getGenres = () => {
       return this.state.currentMovie.genres.map(genre => {
-        return <p>genre.name</p>
+        return <p>{genre}</p>
       })
     }
 
@@ -44,7 +44,7 @@ class ShowPage extends Component {
                         <p className='user-rating'>My Rating: {this.props.userRating}</p>
                       </article>
                       <article className='show-page-additional-information'>
-                        <p className='genres'>{this.getGenres}</p>
+                        <p className='genres'>Genres: {this.getGenres()}</p>
                         <p className='overview'>Overview: {this.state.currentMovie.overview}</p>
                         <p className='release-date'>Release Date: {this.state.currentMovie.release_date}</p>
                         <p className='budget'>Budget: ${this.state.currentMovie.budget}</p>

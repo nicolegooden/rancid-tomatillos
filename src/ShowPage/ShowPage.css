@@ -6,3 +6,12 @@
 .show-page-image {
   height: 25em;
 }
+
+.genres {
+  display: flex;
+}
+
+.genres > p {
+  padding-right: 7px;
+}
+/*  */
