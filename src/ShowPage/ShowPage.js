@@ -29,36 +29,35 @@ class ShowPage extends Component {
   }
 
     getGenres = () => {
-      return this.props.genres.map(genre => {
+      return this.state.currentMovie.genres.map(genre => {
         return <p>genre.name</p>
       })
     }
 
     render() {
       let userView;
-      console.log(this.state.currentMovie)
       if (this.state.currentMovie.overview) {
         userView = <section className='show-page-container' >
                       <article className='show-page-basic-information'>
-                        <h2 className='show-page-title'>{this.props.title}title</h2>
-                        <img className='show-page-image' alt='poster for {this.props.title}' src={ this.props.backdropPath }/>
-                        <p className='tagline'>tagline</p>
-                        <p className='run-time'>runtime</p>
-                        <p className='show-page-average-rating'>{this.props.averageRating}</p>
-                        <p className='user-rating'>{this.props.userRating}</p>
+                        <h2 className='show-page-title'>{this.props.title}</h2>
+                        <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
+                        <p className='tagline'>{this.state.currentMovie.tagline}</p>
+                        <p className='run-time'>Runtime: {this.state.currentMovie.runtime}</p>
+                        <p className='show-page-average-rating'>Average Rating: {this.props.average_rating}</p>
+                        <p className='user-rating'>My Rating: {this.props.userRating}</p>
                       </article>
                       <article className='show-page-additional-information'>
                         <p className='genres'>{this.getGenres}</p>
-                        <p className='overview'>{this.state.currentMovie.overview}</p>
-                        <p className='release-date'>{this.props.releaseDate}</p>
-                        <p className='budget'>{this.props.budget}</p>
-                        <p className='revenue'>{this.props.revenue}</p>
+                        <p className='overview'>Overview: {this.state.currentMovie.overview}</p>
+                        <p className='release-date'>Release Date: {this.state.currentMovie.release_date}</p>
+                        <p className='budget'>Budget: {this.state.currentMovie.budget}</p>
+                        <p className='revenue'>Revenue: {this.state.currentMovie.revenue}</p>
                       </article>
                     </section>
       } else {
         userView = <h1>Loading your movie</h1>
       }
-      
+
       return (
         <div>
           {userView}
