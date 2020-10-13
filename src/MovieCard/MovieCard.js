@@ -13,6 +13,7 @@ function MovieCard(props) {
       <>
        <label htmlFor='Rate Movie'>Rate Movie: </label>
        <input tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
+       <button className='submit-rating-button'>Submit</button><br />
        <Link to={path}><button className='show-page-button'>Movie Details</button></Link>
       </>
       }
