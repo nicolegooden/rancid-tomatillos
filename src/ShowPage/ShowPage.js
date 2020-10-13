@@ -39,16 +39,16 @@ class ShowPage extends Component {
                         <h2 className='show-page-title'>{this.props.title}</h2>
                         <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
                         <p className='tagline'>{this.state.currentMovie.tagline}</p>
-                        <p className='run-time'>Runtime: {this.state.currentMovie.runtime}</p>
-                        <p className='show-page-average-rating'>Average Rating: {this.props.average_rating}</p>
+                        <p className='run-time'>Runtime: {this.state.currentMovie.runtime} minutes</p>
+                        <p className='show-page-average-rating'>Average Rating: {this.props.average_rating}/10</p>
                         <p className='user-rating'>My Rating: {this.props.userRating}</p>
                       </article>
                       <article className='show-page-additional-information'>
                         <p className='genres'>{this.getGenres}</p>
                         <p className='overview'>Overview: {this.state.currentMovie.overview}</p>
                         <p className='release-date'>Release Date: {this.state.currentMovie.release_date}</p>
-                        <p className='budget'>Budget: {this.state.currentMovie.budget}</p>
-                        <p className='revenue'>Revenue: {this.state.currentMovie.revenue}</p>
+                        <p className='budget'>Budget: ${this.state.currentMovie.budget}</p>
+                        <p className='revenue'>Revenue: ${this.state.currentMovie.revenue}</p>
                       </article>
                     </section>
       } else {
