@@ -37,7 +37,7 @@
         },
         body: JSON.stringify({
           movie_id: movieID,
-          rating: userRating
+          rating: parseInt(userRating)
         })
       })
         .then(response => response.json())
