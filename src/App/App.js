@@ -61,8 +61,6 @@ class App extends Component {
     }
   }
 
-
-
   render() {
     return (
       <main>
@@ -71,7 +69,7 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
+          <MovieContainer user={this.state.user} allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
         </Route>
         <Route path='/movie/:id'
           render={({ match }) => {
