@@ -19,6 +19,8 @@ class App extends Component {
       hasLoginView: false
     };
     this.setUser = this.setUser.bind(this);
+    this.retrieveAllRatings = this.retrieveAllRatings.bind(this);
+    this.getRatingForShowPage = this.getRatingForShowPage.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +35,20 @@ class App extends Component {
     this.setState(user);
     getAllRatings(this.state.user.id)
     .then(ratings => this.setState({userRatings: ratings.ratings}))
+  }
+
+  retrieveAllRatings() {
+    getAllRatings(this.state.user.id)
+    .then(ratings => this.setState({userRatings: ratings.ratings}))
+  }
+
+  getRatingForShowPage(movieID) {
+    let singleRating = this.state.userRatings.find(ratingInfo => {
+      return ratingInfo.movie_id === movieID
+    })
+    if (singleRating) {
+      return singleRating.rating;
+    }
   }
 
   determineHeaderText = () => {
@@ -68,6 +84,17 @@ class App extends Component {
     }
   }
 
+  findUserRating = (selectedMovieID) => {
+    if (this.state.userRatings.length) {
+      let match = this.state.userRatings.find(ratingInfo => {
+        return ratingInfo.movie_id === selectedMovieID
+      })
+      if (match) {
+        return match.rating;
+      } 
+    }
+  }
+
   render() {
     return (
       <main>
@@ -87,7 +114,7 @@ class App extends Component {
           render={({ match }) => {
             const { id } = match.params;
             const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
-            return <ShowPage {...singleMovie} />
+            return <ShowPage {...singleMovie} findUserRating={this.findUserRating} retrieveAllRatings={this.retrieveAllRatings} getRatingForShowPage={this.getRatingForShowPage} setRatingForShowPage={this.setRatingForShowPage}/>
           }}
         />
         <Route exact path='/login'>
