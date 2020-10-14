@@ -16,11 +16,8 @@ class MovieCard extends Component {
     this.setState({userRating: event.target.value})
   }
 
-  submitRating = (event) => {
+  submitRating = () => {
     submitUserRating(this.props.user.id, this.props.id, this.state.userRating)
-    .then(data => console.log('harper', data))
-    .catch(error => this.setState({error: error}))
-    //show the rating that we posted as My Rating
   }
 
   render() {
