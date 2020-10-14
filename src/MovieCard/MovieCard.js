@@ -8,6 +8,7 @@ class MovieCard extends Component {
     super(props);
     this.state = {
       inputRating: 0,
+      submittedRating: 0,
       error: ''
     }
   }
@@ -26,9 +27,10 @@ class MovieCard extends Component {
     this.setState({inputRating: event.target.value})
   }
 
-  submitRating = () => {
+  submitRating = (event) => {
     submitUserRating(this.props.user.id, this.props.id, this.state.inputRating)
-  }
+    this.setState({submittedRating: this.state.inputRating})
+    }
 
   determineIfLink = (path) => {
     if (this.props.user.name) {
@@ -39,7 +41,7 @@ class MovieCard extends Component {
   }
 
   determineRatingContent = () => {
-    if (this.props.user.name && !this.props.userRating) {
+    if (this.props.user.name && !this.props.userRating && this.state.submittedRating === 0) {
       return (
         <>
           <label htmlFor='Rate Movie'>Rate Movie: </label>
@@ -47,7 +49,14 @@ class MovieCard extends Component {
           <button onClick={this.submitRating} className='submit-rating-button'>Submit</button><br />
         </>
       )
-    } 
+    } else if (this.props.user.name && this.state.submittedRating > 0) {
+      return ( 
+        <>
+          <p className='movie-user-rating'>My Rating: {this.state.submittedRating}</p>
+          <button className='edit-user-rating'>Edit Rating</button>
+        </>
+      )
+    }
   }
 
   render() {
