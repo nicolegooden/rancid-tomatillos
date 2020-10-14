@@ -76,7 +76,12 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer user={this.state.user} allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
+          <MovieContainer 
+            user={this.state.user} 
+            allMovies={this.state.movies} 
+            determineShowPageButton={this.determineShowPageButton}
+            userRatings={this.state.userRatings}
+            />
         </Route>
         <Route path='/movie/:id'
           render={({ match }) => {
