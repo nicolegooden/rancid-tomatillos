@@ -10,7 +10,7 @@ function MovieContainer(props) {
       averageRating={movie.average_rating}
       id={movie.id}
       user={props.user}
-      userRatings={props.userRatings.find(rating => {
+      userRating={props.userRatings.find(rating => {
         return rating.movie_id === movie.id
       })}
     />
