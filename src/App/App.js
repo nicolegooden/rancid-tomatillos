@@ -4,7 +4,7 @@ import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { getMovies } from '../apiCalls';
+import { getMovies, getAllRatings } from '../apiCalls';
 import './App.css';
 
 
@@ -15,6 +15,7 @@ class App extends Component {
       movies: [],
       error: '',
       user: {},
+      userRatings: [],
       hasLoginView: false
     };
     this.setUser = this.setUser.bind(this);
@@ -30,6 +31,8 @@ class App extends Component {
 
   setUser(user){
     this.setState(user);
+    getAllRatings(this.state.user.id)
+    .then(ratings => this.setState({userRatings: ratings.ratings}))
   }
 
   determineHeaderText = () => {
