@@ -62,13 +62,13 @@ class MovieCard extends Component {
   render() {
     const path = `/movie/${this.props.id}`;
     return (
-      <article className='movie-card'>
-        {this.determineIfLink(path)}
-        <h3 className='movie-title'>{ this.props.title }</h3>
-        <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
-        {this.determineRatingContent()}
-        {this.determineIfRatingExists()} 
-      </article>
+        <article className='movie-card'>
+          {this.determineIfLink(path)}
+          <h3 className='movie-title'>{ this.props.title }</h3>
+          <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
+          {this.determineRatingContent()}
+          {this.determineIfRatingExists()} 
+        </article>
   )}
 } 
 
