@@ -22,6 +22,7 @@ class ShowPage extends Component {
   determineSingleMovie = (id) => {
     getSingleMovie(id)
       .then(singleMovie => this.setState({currentMovie: singleMovie.movie}))
+      .then(this.props.retrieveAllRatings())
       .catch(error => this.setState({ error: error }));
   }
 
@@ -40,8 +41,8 @@ class ShowPage extends Component {
                         <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
                         <p className='tagline'>{this.state.currentMovie.tagline}</p>
                         <p className='run-time'>Runtime: {this.state.currentMovie.runtime} minutes</p>
-                        <p className='show-page-average-rating'>Average Rating: {this.props.average_rating}/10</p>
-                        <p className='user-rating'>My Rating: {this.props.userRating}</p>
+                        <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
+                        <p className='user-rating'>My Rating: {this.props.findUserRating(this.props.id)}/10</p>
                       </article>
                       <article className='show-page-additional-information'>
                         <p className='genres'>Genres: {this.getGenres()}</p>
