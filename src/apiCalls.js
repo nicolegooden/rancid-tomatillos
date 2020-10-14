@@ -44,5 +44,11 @@
         .catch(error => console.log(error))
     }
 
+    export const getAllRatings = (userID) => {
+      return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2//users/${userID}/ratings`)
+        .then(response => response.json())
+        .catch(error => console.log(error))
+    }
+
 
 
