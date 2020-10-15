@@ -13,6 +13,7 @@ function MovieContainer(props) {
       userRating={props.userRatings.find(rating => {
         return rating.movie_id === movie.id
       })}
+      retrieveAllRatings={props.retrieveAllRatings}
     />
   })
   return (
