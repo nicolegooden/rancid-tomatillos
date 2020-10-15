@@ -50,5 +50,12 @@
         .catch(error => console.log(error))
     }
 
-
-
+    export const deleteRating = (userID, ratingID) => {
+        return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({})
+        }).catch(error => console.log(error))
+        }
