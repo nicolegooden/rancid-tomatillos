@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Redirect, Route, Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { getMovies, getSingleMovie } from '../apiCalls';
+import { getMovies, getAllRatings } from '../apiCalls';
 import './App.css';
 
 
@@ -15,9 +15,12 @@ class App extends Component {
       movies: [],
       error: '',
       user: {},
+      userRatings: [],
       hasLoginView: false
     };
     this.setUser = this.setUser.bind(this);
+    this.retrieveAllRatings = this.retrieveAllRatings.bind(this);
+    this.getRatingForShowPage = this.getRatingForShowPage.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +33,22 @@ class App extends Component {
 
   setUser(user){
     this.setState(user);
+    getAllRatings(this.state.user.id)
+    .then(ratings => this.setState({userRatings: ratings.ratings}))
+  }
+
+  retrieveAllRatings() {
+    getAllRatings(this.state.user.id)
+    .then(ratings => this.setState({userRatings: ratings.ratings}))
+  }
+
+  getRatingForShowPage(movieID) {
+    let singleRating = this.state.userRatings.find(ratingInfo => {
+      return ratingInfo.movie_id === movieID
+    })
+    if (singleRating) {
+      return singleRating.rating;
+    }
   }
 
   determineHeaderText = () => {
@@ -46,22 +65,35 @@ class App extends Component {
 
   updateLoginView = () => {
     if (!this.state.user.name) {
-      this.setState({hasLoginView: true})
-    }
+      this.setState({hasLoginView: true}) 
+    } 
+  }
+
+  returnGuestToHomepage = () => {
+    this.setState({hasLoginView: false})
   }
 
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
-      return <button className='log-button' onClick={this.logOutUser}>Logout</button>
+      return <Link to='/'><button className='log-button' onClick={this.logOutUser}>Logout</button></Link>
     } else if (this.state.hasLoginView) {
-      return
+      return <Link to='/'><button className='log-button' onClick={this.returnGuestToHomepage}>Back to Homepage</button></Link>
     }
     else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
     }
   }
 
-
+  findUserRating = (selectedMovieID) => {
+    if (this.state.userRatings.length) {
+      let match = this.state.userRatings.find(ratingInfo => {
+        return ratingInfo.movie_id === selectedMovieID
+      })
+      if (match) {
+        return match.rating;
+      } 
+    }
+  }
 
   render() {
     return (
@@ -71,13 +103,18 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer allMovies={this.state.movies} determineShowPageButton={this.determineShowPageButton}/>
+          <MovieContainer 
+            user={this.state.user} 
+            allMovies={this.state.movies} 
+            determineShowPageButton={this.determineShowPageButton}
+            userRatings={this.state.userRatings}
+            />
         </Route>
         <Route path='/movie/:id'
           render={({ match }) => {
             const { id } = match.params;
             const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
-            return <ShowPage {...singleMovie} />
+            return <ShowPage {...singleMovie} findUserRating={this.findUserRating} retrieveAllRatings={this.retrieveAllRatings} getRatingForShowPage={this.getRatingForShowPage} setRatingForShowPage={this.setRatingForShowPage}/>
           }}
         />
         <Route exact path='/login'>
