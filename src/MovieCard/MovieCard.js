@@ -13,14 +13,9 @@ class MovieCard extends Component {
     }
   }
 
-  determineIfRatingExists = () => {
-    if (this.props.user.name && this.props.userRating) {
-      return ( 
-        <>
-          <p className='movie-user-rating'>My Rating: {this.props.userRating.rating}</p>
-          <button className='edit-user-rating'>Edit Rating</button>
-        </>
-      )}
+
+  editRating = (event) => {
+    console.log("editRating is here")
   }
 
   trackRating = (event) => {
@@ -40,6 +35,7 @@ class MovieCard extends Component {
     }
   }
 
+
   determineRatingContent = () => {
     if (this.props.user.name && !this.props.userRating && this.state.submittedRating === 0) {
       return (
@@ -50,14 +46,25 @@ class MovieCard extends Component {
         </>
       )
     } else if (this.props.user.name && this.state.submittedRating > 0) {
-      return ( 
+      return (
         <>
           <p className='movie-user-rating'>My Rating: {this.state.submittedRating}</p>
-          <button className='edit-user-rating'>Edit Rating</button>
+          <button onClick={this.editRating} className='edit-user-rating'>Edit Rating</button>
         </>
       )
     }
   }
+
+  determineIfRatingExists = () => {
+    if (this.props.user.name && this.props.userRating) {
+      return (
+        <>
+        <p className='movie-user-rating'>My Rating: {this.props.userRating.rating}</p>
+        <button onClick={this.editRating} className='edit-user-rating'>Edit Rating</button>
+        </>
+      )}
+    }
+
 
   render() {
     const path = `/movie/${this.props.id}`;
@@ -67,9 +74,9 @@ class MovieCard extends Component {
           <h3 className='movie-title'>{ this.props.title }</h3>
           <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
           {this.determineRatingContent()}
-          {this.determineIfRatingExists()} 
+          {this.determineIfRatingExists()}
         </article>
   )}
-} 
+}
 
 export default MovieCard;
