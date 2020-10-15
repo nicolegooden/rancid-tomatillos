@@ -42,7 +42,8 @@ class ShowPage extends Component {
                         <p className='tagline'>{this.state.currentMovie.tagline}</p>
                         <p className='run-time'>Runtime: {this.state.currentMovie.runtime} minutes</p>
                         <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
-                        <p className='user-rating'>My Rating: {this.props.findUserRating(this.props.id)}/10</p>
+                        {this.props.findUserRating(this.props.id) > 0 &&
+                        <p className='user-rating'>My Rating: {this.props.findUserRating(this.props.id)}/10</p>}
                       </article>
                       <article className='show-page-additional-information'>
                         <p className='genres'>Genres: {this.getGenres()}</p>
