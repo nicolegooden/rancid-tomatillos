@@ -7,18 +7,14 @@ class MovieCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasRating: false,
       inputRating: 0,
-      submittedRating: 0,
       error: ''
     }
   }
 
   editRating = (event) => {
-    this.setState({submittedRating: 0, hasRating: false})
-    if (this.props.userRating) {
-      deleteRating(this.props.user.id, this.props.userRating.id)
-    }
+    deleteRating(this.props.user.id, this.props.userRating.id)
+    .then(() => this.props.retrieveAllRatings())
   }
 
   trackRating = (event) => {
@@ -27,8 +23,8 @@ class MovieCard extends Component {
 
   submitRating = (event) => {
     submitUserRating(this.props.user.id, this.props.id, this.state.inputRating)
-    this.setState({submittedRating: this.state.inputRating, hasRating: true})
-    }
+    .then(() => this.props.retrieveAllRatings())
+  }
 
   determineIfLink = (path) => {
     if (this.props.user.name) {
@@ -38,48 +34,31 @@ class MovieCard extends Component {
     }
   }
 
-
   determineRatingContent = () => {
-    if (this.props.user.name && !this.props.userRating && this.state.submittedRating === 0 && !this.state.hasRating) {
+    if (this.props.user.name && !this.props.userRating) {
       return (
         <>
           <label htmlFor='Rate Movie'>Rate Movie: </label>
           <input onChange={this.trackRating} tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
           <button onClick={this.submitRating} className='submit-rating-button'>Submit</button><br />
-        </>
-      )
-    } else if (this.props.user.name && this.state.submittedRating > 0) {
+        </>)
+    } else if (this.props.user.name && this.props.userRating) {
       return (
         <>
-          <p className='movie-user-rating'>My Rating: {this.state.submittedRating}</p>
+          <p className='movie-user-rating'>My Rating: {this.props.userRating.rating}</p>
           <button onClick={this.editRating} className='edit-user-rating'>Edit Rating</button>
-        </>
-      )
-    }
+        </>)}
   }
-
-  determineIfRatingExists = () => {
-    if (this.props.user.name && this.props.userRating) {
-        this.setState({hasRating: true})
-      return (
-        <>
-        <p className='movie-user-rating'>My Rating: {this.props.userRating.rating}</p>
-        <button onClick={this.editRating} className='edit-user-rating'>Edit Rating</button>
-        </>
-      )}
-    }
-
 
   render() {
     const path = `/movie/${this.props.id}`;
     return (
-        <article className='movie-card'>
-          {this.determineIfLink(path)}
-          <h3 className='movie-title'>{ this.props.title }</h3>
-          <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
-          {this.determineRatingContent()}
-          {this.determineIfRatingExists()}
-        </article>
+      <article className='movie-card'>
+        {this.determineIfLink(path)}
+        <h3 className='movie-title'>{ this.props.title }</h3>
+        <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
+        {this.determineRatingContent()}
+      </article>
   )}
 }
 

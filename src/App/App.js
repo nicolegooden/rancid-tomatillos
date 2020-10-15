@@ -39,7 +39,9 @@ class App extends Component {
 
   retrieveAllRatings() {
     getAllRatings(this.state.user.id)
-    .then(ratings => this.setState({userRatings: ratings.ratings}))
+    .then(ratings => {
+      this.setState({userRatings: ratings.ratings})
+    })
   }
 
   getRatingForShowPage(movieID) {
@@ -108,13 +110,18 @@ class App extends Component {
             allMovies={this.state.movies} 
             determineShowPageButton={this.determineShowPageButton}
             userRatings={this.state.userRatings}
+            retrieveAllRatings={this.retrieveAllRatings}
             />
         </Route>
         <Route path='/movie/:id'
           render={({ match }) => {
             const { id } = match.params;
             const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
-            return <ShowPage {...singleMovie} findUserRating={this.findUserRating} retrieveAllRatings={this.retrieveAllRatings} getRatingForShowPage={this.getRatingForShowPage} setRatingForShowPage={this.setRatingForShowPage}/>
+            return <ShowPage {...singleMovie} 
+              findUserRating={this.findUserRating} 
+              retrieveAllRatings={this.retrieveAllRatings} 
+              getRatingForShowPage={this.getRatingForShowPage} 
+              setRatingForShowPage={this.setRatingForShowPage}/>
           }}
         />
         <Route exact path='/login'>
