@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './MovieCard.css';
-import { submitUserRating } from '../apiCalls.js';
+import { submitUserRating, deleteRating } from '../apiCalls.js';
 
 class MovieCard extends Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class MovieCard extends Component {
 
 
   editRating = (event) => {
-    console.log("editRating is here")
+    console.log("EDIT")
+    deleteRating(this.props.user.id, this.props.userRating.id)
+    .then(this.setState({submittedRating: 0}))
   }
 
   trackRating = (event) => {
