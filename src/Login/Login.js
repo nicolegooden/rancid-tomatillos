@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getUserData } from '../apiCalls'
+import PropTypes from 'prop-types';
 import { BrowserRouter as Route, Redirect, Link } from 'react-router-dom';
 import './Login.css';
 
@@ -71,6 +72,12 @@ class Login extends Component {
         </form>
       </section>
     )
+  }
+
+  Login.propTypes = {
+    user: PropTypes.object.isRequired,
+    setUser: PropTypes.func.isRequired,
+    updateLoginView: PropTypes.func.isRequired
   }
 }
 

@@ -67,8 +67,8 @@ class App extends Component {
 
   updateLoginView = () => {
     if (!this.state.user.name) {
-      this.setState({hasLoginView: true}) 
-    } 
+      this.setState({hasLoginView: true})
+    }
   }
 
   returnGuestToHomepage = () => {
@@ -93,7 +93,7 @@ class App extends Component {
       })
       if (match) {
         return match.rating;
-      } 
+      }
     }
   }
 
@@ -105,9 +105,9 @@ class App extends Component {
           determineLogButtonStatus={this.determineLogButtonStatus}
         />
         <Route exact path='/'>
-          <MovieContainer 
-            user={this.state.user} 
-            allMovies={this.state.movies} 
+          <MovieContainer
+            user={this.state.user}
+            allMovies={this.state.movies}
             determineShowPageButton={this.determineShowPageButton}
             userRatings={this.state.userRatings}
             retrieveAllRatings={this.retrieveAllRatings}
@@ -117,10 +117,10 @@ class App extends Component {
           render={({ match }) => {
             const { id } = match.params;
             const singleMovie = this.state.movies.find(movie => movie.id === parseInt(id));
-            return <ShowPage {...singleMovie} 
-              findUserRating={this.findUserRating} 
-              retrieveAllRatings={this.retrieveAllRatings} 
-              getRatingForShowPage={this.getRatingForShowPage} 
+            return <ShowPage {...singleMovie}
+              findUserRating={this.findUserRating}
+              retrieveAllRatings={this.retrieveAllRatings}
+              getRatingForShowPage={this.getRatingForShowPage}
               setRatingForShowPage={this.setRatingForShowPage}/>
           }}
         />
