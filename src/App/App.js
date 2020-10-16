@@ -33,8 +33,10 @@ class App extends Component {
 
   setUser(user){
     this.setState(user);
-    getAllRatings(this.state.user.id)
-    .then(ratings => this.setState({userRatings: ratings.ratings}))
+    if (this.state.user.name) {
+      getAllRatings(this.state.user.id)
+      .then(ratings => this.setState({userRatings: ratings.ratings}))
+    }
   }
 
   retrieveAllRatings() {
