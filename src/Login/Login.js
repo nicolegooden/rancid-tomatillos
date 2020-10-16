@@ -74,11 +74,12 @@ class Login extends Component {
     )
   }
 
-  Login.propTypes = {
-    user: PropTypes.object.isRequired,
-    setUser: PropTypes.func.isRequired,
-    updateLoginView: PropTypes.func.isRequired
-  }
+}
+
+Login.propTypes = {
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
+  updateLoginView: PropTypes.func.isRequired
 }
 
 

@@ -9,7 +9,7 @@ class MovieCard extends Component {
     super(props);
     this.state = {
       inputRating: 0,
-      error: ''
+      error: false
     }
   }
 
@@ -23,8 +23,13 @@ class MovieCard extends Component {
   }
 
   submitRating = (event) => {
-    submitUserRating(this.props.user.id, this.props.id, this.state.inputRating)
-    .then(() => this.props.retrieveAllRatings())
+    if (this.state.inputRating >= 1 && this.state.inputRating <= 10) {
+      this.setState({error: false})
+      submitUserRating(this.props.user.id, this.props.id, this.state.inputRating)
+      .then(() => this.props.retrieveAllRatings())
+    } else {
+      this.setState({error: true})
+    }
   }
 
   determineIfLink = (path) => {
@@ -42,6 +47,8 @@ class MovieCard extends Component {
           <label htmlFor='Rate Movie'>Rate Movie: </label>
           <input onChange={this.trackRating} tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
           <button onClick={this.submitRating} className='submit-rating-button'>Submit</button><br />
+          { this.state.error &&
+          <p>Choose a number between 1 and 10</p> }
         </>)
     } else if (this.props.user.name && this.props.userRating) {
       return (
