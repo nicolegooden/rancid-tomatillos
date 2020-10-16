@@ -65,7 +65,7 @@ class MovieCard extends Component {
 
 export default MovieCard;
 
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
   posterPath: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,

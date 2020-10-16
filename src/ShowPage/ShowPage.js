@@ -64,7 +64,7 @@ class ShowPage extends Component {
 
 export default ShowPage;
 
-ShowPage.PropTypes = {
+ShowPage.propTypes = {
   findUserRating: PropTypes.func.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired,
   getRatingForShowPage: PropTypes.func.isRequired,
