@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './MovieCard.css';
 import { submitUserRating, deleteRating } from '../apiCalls.js';
 
@@ -63,3 +64,13 @@ class MovieCard extends Component {
 }
 
 export default MovieCard;
+
+MovieCard.PropTypes = {
+  posterPath: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  averageRating: PropTypes.number.isRequired,
+  userRating: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  retrieveAllRatings: PropTypes.func.isRequired
+}
