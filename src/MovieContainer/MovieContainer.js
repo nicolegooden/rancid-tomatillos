@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
-import './MovieContainer.css'
+import PropTypes from 'prop-types';
+import './MovieContainer.css';
 
 function MovieContainer(props) {
   const allMovieCards= props.allMovies.map(movie => {
@@ -22,3 +23,11 @@ function MovieContainer(props) {
 }
 
 export default MovieContainer;
+
+MovieContainer.propTypes = {
+  user: PropTypes.object.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  userRatings: PropTypes.array.isRequired,
+  determineShowPageButton: PropTypes.func.isRequired,
+  retrieveAllRatings: PropTypes.func.isRequired
+}
