@@ -17,9 +17,15 @@ function MovieContainer(props) {
       retrieveAllRatings={props.retrieveAllRatings}
     />
   })
-  return (
-  <section className='all-movie-cards'>{allMovieCards}</section>
-  )
+  if (props.allMovies) {
+    return (
+      <section className='all-movie-cards'>{allMovieCards}</section>
+    )
+  } else {
+    return (
+      <h2>Loading movies!!</h2>
+    )
+  }
 }
 
 export default MovieContainer;
