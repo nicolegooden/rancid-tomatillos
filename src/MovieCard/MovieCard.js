@@ -77,7 +77,7 @@ MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   averageRating: PropTypes.number.isRequired,
-  userRating: PropTypes.object.isRequired,
+  userRating: PropTypes.object,
   user: PropTypes.object.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired
 }

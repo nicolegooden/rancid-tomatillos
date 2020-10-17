@@ -25,9 +25,9 @@ function MovieContainer(props) {
 export default MovieContainer;
 
 MovieContainer.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   allMovies: PropTypes.array.isRequired,
-  userRatings: PropTypes.array.isRequired,
-  determineShowPageButton: PropTypes.func.isRequired,
+  userRatings: PropTypes.array,
+  determineShowPageButton: PropTypes.func,
   retrieveAllRatings: PropTypes.func.isRequired
 }
