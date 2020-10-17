@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Header.css';
 import tomato from '../tomato.png'
 
@@ -14,5 +15,9 @@ function Header(props) {
   )
 }
 
-
 export default Header;
+
+Header.propTypes = {
+  determineHeaderText: PropTypes.func.isRequired,
+  determineLogButtonStatus: PropTypes.func.isRequired
+}

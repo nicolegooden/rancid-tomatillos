@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { getSingleMovie } from '../apiCalls'
+import PropTypes from 'prop-types';
+import { getSingleMovie } from '../apiCalls';
 import './ShowPage.css';
-
-// let allGenres;
 
 class ShowPage extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class ShowPage extends Component {
   componentDidMount() {
     this.determineSingleMovie(this.props.id)
   }
-
 
   determineSingleMovie = (id) => {
     getSingleMovie(id)
@@ -56,7 +54,6 @@ class ShowPage extends Component {
       } else {
         userView = <h1>Loading your movie</h1>
       }
-
       return (
         <div>
           {userView}
@@ -65,6 +62,11 @@ class ShowPage extends Component {
     }
   }
 
-
-
 export default ShowPage;
+
+ShowPage.propTypes = {
+  findUserRating: PropTypes.func.isRequired,
+  retrieveAllRatings: PropTypes.func.isRequired,
+  getRatingForShowPage: PropTypes.func.isRequired,
+  setRatingForShowPage: PropTypes.func.isRequired
+}

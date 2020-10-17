@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
-import './MovieContainer.css'
+import PropTypes from 'prop-types';
+import './MovieContainer.css';
 
 function MovieContainer(props) {
   const allMovieCards= props.allMovies.map(movie => {
@@ -16,9 +17,23 @@ function MovieContainer(props) {
       retrieveAllRatings={props.retrieveAllRatings}
     />
   })
-  return (
-  <section className='all-movie-cards'>{allMovieCards}</section>
-  )
+  if (props.allMovies) {
+    return (
+      <section className='all-movie-cards'>{allMovieCards}</section>
+    )
+  } else {
+    return (
+      <h2>Loading movies!!</h2>
+    )
+  }
 }
 
 export default MovieContainer;
+
+MovieContainer.propTypes = {
+  user: PropTypes.object,
+  allMovies: PropTypes.array.isRequired,
+  userRatings: PropTypes.array,
+  determineShowPageButton: PropTypes.func,
+  retrieveAllRatings: PropTypes.func.isRequired
+}
