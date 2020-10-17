@@ -22,8 +22,7 @@ class Login extends Component {
   clearInputs() {
     this.setState({
       email: '',
-      password: '',
-      // error: ''
+      password: ''
     })
   }
 
