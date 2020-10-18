@@ -103,5 +103,48 @@ describe('Login', () => {
 
       const otherMessage = screen.getByText('Please enter your email and your password.')
       expect(otherMessage).toBeInTheDocument()
+
+      userEvent.type(screen.getByPlaceholderText('enter password'), 'qwerty');
+      expect(screen.getByPlaceholderText('example@email.com')).toHaveValue('');
+      expect(screen.getByPlaceholderText('enter password')).toHaveValue('qwerty');
+
+      userEvent.click(screen.getByText('Login'));
+
+      expect(otherMessage).toBeInTheDocument()
     })
+
+    it('should no longer show the login page upon successful login', async () => {
+      const fakeUpdateLogin = jest.fn();
+      const fakeSetUser = jest.fn();
+      const myUser = {};
+
+      // getUserData.mockResolvedValueOnce({
+      //   user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
+      // })
+ 
+      render(
+        <MemoryRouter>
+          <Login
+            user={myUser}
+            updateLoginView={fakeUpdateLogin}
+            setUser={fakeSetUser}
+          />
+        </MemoryRouter>
+      )
+
+      userEvent.type(screen.getByPlaceholderText('example@email.com'), 'charlie@turing.io');
+      userEvent.type(screen.getByPlaceholderText('enter password'), 'qwerty');
+
+      expect(screen.getByPlaceholderText('example@email.com')).toHaveValue('charlie@turing.io');
+      expect(screen.getByPlaceholderText('enter password')).toHaveValue('qwerty');
+
+      userEvent.click(screen.getByText('Login'));
+
+      // expect(fakeSetUser).toHaveBeenCalledTimes(1);
+
+      // const welcome = await waitForElement(() => screen.getByText('Welcome To Rancid Tomatillos, Charlie'))
+      // expect(welcome).toBeInTheDocument()
+    })
+
+    //think this last test should be part of integration testing in App
 })
