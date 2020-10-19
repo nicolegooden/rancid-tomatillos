@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitForElement } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ShowPage from './ShowPage.js';
 import { MemoryRouter } from 'react-router-dom';
@@ -56,7 +56,7 @@ describe('Show Page', () => {
       release_date: '1999-06-15',
       overview: 'Three wizards, one muggle-born, take on yet another school year battling he-who-must-not-be-named!',
       average_rating: 9,
-      genres: [{id: 13, name: 'Action'}, {id: 16, name: 'Adventure'}],
+      genres: ['Action', 'Adventure'],
       budget: 7500,
       revenue: 28000,
       runtime: 178,
@@ -74,6 +74,7 @@ describe('Show Page', () => {
         <ShowPage 
           title={'Harry Potter'}
           id={1}
+          average_rating={9}
           findUserRating={fakeFindUserRating}
           retrieveAllRatings={fakeRetrieveAllRatings}
           getRatingForShowPage={fakeGetRatingForShowPage}
@@ -82,14 +83,9 @@ describe('Show Page', () => {
      </MemoryRouter>
     )
 
-    const movieTitle = await waitForElement(() => screen.getByText('Harry Potter'));
-    expect(movieTitle).toBeInTheDocument();
-    screen.debug()
+    const genre = await waitFor(() => screen.getByText('Genres: Action Adventure'));
+    expect(genre).toBeInTheDocument();
+    
 
   })
-
-  //need to render a movie card, have user click on image to get here
-  //need to mock fetch request for getSingleMovie()j
-  //test that movie details are rendered, and associated prop functions
-    //are fired
 })
