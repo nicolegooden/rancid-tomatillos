@@ -58,3 +58,17 @@
         body: JSON.stringify({})
       }).catch(error => console.log(error))
     }
+
+    export const submitFavorite = (movieID) => {
+      return fetch(`https://localhost:3001/api/v1/favorites`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          movie_id: movieID,
+        })
+      })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+    }
