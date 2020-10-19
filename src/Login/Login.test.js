@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitForElement } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
@@ -65,7 +65,7 @@ describe('Login', () => {
 
       userEvent.click(screen.getByText('Login'));
 
-      const message = await waitForElement(() => screen.getByText('Incorrect email or password, please try again.'));
+      const message = await waitFor(() => screen.getByText('Incorrect email or password, please try again.'));
       expect(message).toBeInTheDocument();
 
       userEvent.type(screen.getByPlaceholderText('example@email.com'), 'leta@turing.com');
