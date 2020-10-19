@@ -4,12 +4,17 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
 import { MemoryRouter } from 'react-router-dom';
-// import { getUserData, getAllRatings } from '../apiCalls.js';
-// jest.mock('../apiCalls.js')
+import { getUserData, getAllRatings } from '../apiCalls.js';
+jest.mock('../apiCalls.js')
 
 describe('Login', () => {
 
     it('should render a login form', () => {
+
+      getUserData.mockResolvedValueOnce({
+        user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
+      })
+
         const fakeUpdateLogin = jest.fn();
         const fakeSetUser = jest.fn();
         const myUser = {};
@@ -36,13 +41,17 @@ describe('Login', () => {
       expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
 
       userEvent.click(screen.getByText('Login'));
-      // expect(fakeSetUser).toHaveBeenCalledTimes(1);
-      // Jest shows this being called zero times.. can this be tested here?
+      
       expect(screen.getByPlaceholderText('example@email.com')).toHaveValue('');
       expect(screen.getByPlaceholderText('enter password')).toHaveValue('');
     })
 
     it('should inform the user when login criteria is invalid', async () => {
+      
+      getUserData.mockResolvedValueOnce({
+        user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
+      })
+      
       const fakeUpdateLogin = jest.fn();
       const fakeSetUser = jest.fn();
       const myUser = {};
@@ -114,13 +123,14 @@ describe('Login', () => {
     })
 
     it('should no longer show the login page upon successful login', async () => {
+      
+      getUserData.mockResolvedValueOnce({
+        user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
+      })
+      
       const fakeUpdateLogin = jest.fn();
       const fakeSetUser = jest.fn();
       const myUser = {};
-
-      // getUserData.mockResolvedValueOnce({
-      //   user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
-      // })
  
       render(
         <MemoryRouter>
@@ -139,12 +149,10 @@ describe('Login', () => {
       expect(screen.getByPlaceholderText('enter password')).toHaveValue('qwerty');
 
       userEvent.click(screen.getByText('Login'));
-
-      // expect(fakeSetUser).toHaveBeenCalledTimes(1);
-
-      // const welcome = await waitForElement(() => screen.getByText('Welcome To Rancid Tomatillos, Charlie'))
-      // expect(welcome).toBeInTheDocument()
+      expect(fakeSetUser).toHaveBeenCalledWith({user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}})
+      expect(fakeSetUser).toHaveBeenCalledTimes(1);
+      // lines 152 and 153 are failing - stating fakeSetUser has not been called
+        //I've mocked the resolved value of the user object (needed during click event),
+        //but it the function passed as a prop (setUser) is not being fired.
     })
-
-    //think this last test should be part of integration testing in App
 })
