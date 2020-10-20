@@ -100,7 +100,6 @@ class App extends Component {
           <MovieContainer
             user={this.state.user}
             allMovies={this.state.movies}
-            determineShowPageButton={this.determineShowPageButton}
             userRatings={this.state.userRatings}
             retrieveAllRatings={this.retrieveAllRatings}
             />
