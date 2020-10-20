@@ -65,6 +65,16 @@ class ShowPage extends Component {
       .then(() => this.clearInputs())
     }
 
+    determineUserRating = () => {
+      if (this.props.findUserRating(this.props.id) > 0) {
+        return (
+          <p className='user-rating'>
+            My Rating: {this.props.findUserRating(this.props.id)}/10
+          </p>
+        )
+      }
+    }
+
     render() {
       let userView;
       if (this.state.currentMovie.overview) {
@@ -76,9 +86,8 @@ class ShowPage extends Component {
                 <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
                 <p className='tagline'>{this.state.currentMovie.tagline}</p>
                 <article className='ratings'>
-                   <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
-                   {this.props.findUserRating(this.props.id) > 0 &&
-                   <p className='user-rating'>My Rating: {this.props.findUserRating(this.props.id)}/10</p>}
+                  <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
+                  {this.determineUserRating()}
                 </article>
               </article>
               <article className='show-page-additional-information'>
