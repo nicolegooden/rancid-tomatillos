@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getSingleMovie } from '../apiCalls';
+import { getSingleMovie, postComment } from '../apiCalls';
 import './ShowPage.css';
 
 class ShowPage extends Component {
@@ -34,9 +34,9 @@ class ShowPage extends Component {
       this.setState({ commentInput:  event.target.value})
     }
 
-    // submitReview = () => {
-
-    // }
+    submitReview = () => {
+      postComment(this.props.id, this.state.commentInput, this.props.user.name)
+    }
 
     render() {
       let userView;
