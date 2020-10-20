@@ -4,6 +4,7 @@ import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
 import MovieContainer from '../MovieContainer/MovieContainer';
+import CommentForm from '../CommentForm/CommentForm'
 import { getMovies, getAllRatings } from '../apiCalls';
 import './App.css';
 
@@ -132,6 +133,9 @@ class App extends Component {
             user={this.state.user}
             updateLoginView={this.updateLoginView}
           />
+        </Route>
+        <Route exact path='/comment'>
+          <CommentForm />
         </Route>
       </main>
     );
