@@ -112,7 +112,6 @@ class App extends Component {
             return <ShowPage {...singleMovie}
               findUserRating={this.findUserRating}
               retrieveAllRatings={this.retrieveAllRatings}
-              setRatingForShowPage={this.setRatingForShowPage}
               user={this.state.user}/>
           }}
         />
