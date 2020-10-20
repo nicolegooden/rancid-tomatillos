@@ -93,8 +93,8 @@ class App extends Component {
     return (
       <main>
         <Header
-          determineHeaderText={this.determineHeaderText}
-          determineLogButtonStatus={this.determineLogButtonStatus}
+          headerText={this.determineHeaderText()}
+          logButton={this.determineLogButtonStatus()}
         />
         <Route exact path='/'>
           <MovieContainer
