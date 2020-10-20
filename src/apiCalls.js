@@ -73,3 +73,9 @@
       .then(response => response.json())
       .catch(error => console.log(error))
     }
+
+    export const getComments = (movieID) => {
+      return fetch(`http://localhost:3001/api/v1/movies/${movieID}/comments`)
+      .then(response => response.json())
+      .catch(error => console.log(error))
+    }
