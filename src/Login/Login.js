@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import './Login.css';
 
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -13,6 +12,10 @@ class Login extends Component {
       password: '',
       error: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.updateLoginView()
   }
 
   handleInputChange = (event) => {
@@ -36,10 +39,6 @@ class Login extends Component {
       this.setState({ error: 'Please enter your email and your password.' })
     }
     this.clearInputs();
-  }
-
-  componentDidMount() {
-    this.props.updateLoginView()
   }
 
   render() {
@@ -77,7 +76,6 @@ class Login extends Component {
       </section>
     )
   }
-
 }
 
 Login.propTypes = {

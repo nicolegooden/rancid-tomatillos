@@ -4,7 +4,6 @@ import './Header.css';
 import tomato from '../tomato.png'
 
 function Header(props) {
-
   return (
     <section className='header'>
       <img className='tomato-image' src={tomato} alt='basic tomato' />
