@@ -58,3 +58,18 @@
         body: JSON.stringify({})
       }).catch(error => console.log(error))
     }
+
+    export const postComment = (movieID, comment, author) => {
+      return fetch(`http://localhost:3001/api/v1/movies/${movieID}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          comment: comment, 
+          author: author
+        })
+      })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+    }
