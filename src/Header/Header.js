@@ -17,6 +17,6 @@ function Header(props) {
 export default Header;
 
 Header.propTypes = {
-  determineHeaderText: PropTypes.func.isRequired,
-  determineLogButtonStatus: PropTypes.func.isRequired
+  headerText: PropTypes.string.isRequired,
+  logButton: PropTypes.object.isRequired
 }
