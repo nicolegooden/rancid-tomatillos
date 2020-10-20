@@ -47,7 +47,7 @@ class App extends Component {
 
   determineHeaderText = () => {
     if (this.state.user.name) {
-      return `Welcome To Rancid Tomatillos, ${this.state.user.name}`
+      return `Welcome Back, ${this.state.user.name}`
     } else {
       return 'Rancid Tomatillos'
     }
