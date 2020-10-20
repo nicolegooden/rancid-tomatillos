@@ -48,6 +48,7 @@ class ShowPage extends Component {
                         <p className='release-date'>Release Date: {this.state.currentMovie.release_date}</p>
                         <p className='budget'>Budget: ${this.state.currentMovie.budget}</p>
                         <p className='revenue'>Revenue: ${this.state.currentMovie.revenue}</p>
+                        <button className='comment-form-button'>Write Review</button>
                       </article>
                     </section>
       } else {
