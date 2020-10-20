@@ -14,6 +14,10 @@
   width: 5em;
 }
 
+.submit-rating-button, .edit-user-rating {
+  border-radius: 10%;
+}
+
 .submit-rating-button:hover, .edit-user-rating:hover {
   cursor: pointer;
   background-color: #ddf5f9;
