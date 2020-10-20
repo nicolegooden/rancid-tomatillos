@@ -123,7 +123,8 @@ class App extends Component {
               findUserRating={this.findUserRating}
               retrieveAllRatings={this.retrieveAllRatings}
               getRatingForShowPage={this.getRatingForShowPage}
-              setRatingForShowPage={this.setRatingForShowPage}/>
+              setRatingForShowPage={this.setRatingForShowPage}
+              user={this.state.user}/>
           }}
         />
         <Route exact path='/login'>
