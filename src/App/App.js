@@ -20,7 +20,6 @@ class App extends Component {
     };
     this.setUser = this.setUser.bind(this);
     this.retrieveAllRatings = this.retrieveAllRatings.bind(this);
-    this.getRatingForShowPage = this.getRatingForShowPage.bind(this);
   }
 
   componentDidMount() {
@@ -44,15 +43,6 @@ class App extends Component {
     .then(ratings => {
       this.setState({userRatings: ratings.ratings})
     })
-  }
-
-  getRatingForShowPage(movieID) {
-    let singleRating = this.state.userRatings.find(ratingInfo => {
-      return ratingInfo.movie_id === movieID
-    })
-    if (singleRating) {
-      return singleRating.rating;
-    }
   }
 
   determineHeaderText = () => {
@@ -122,7 +112,6 @@ class App extends Component {
             return <ShowPage {...singleMovie}
               findUserRating={this.findUserRating}
               retrieveAllRatings={this.retrieveAllRatings}
-              getRatingForShowPage={this.getRatingForShowPage}
               setRatingForShowPage={this.setRatingForShowPage}
               user={this.state.user}/>
           }}
