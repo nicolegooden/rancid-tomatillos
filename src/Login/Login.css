@@ -7,7 +7,15 @@
 .login-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
 
+.login-button {
+  border-radius: 5%;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  background-color: #ddf5f9;
 }
 
 .email-input-div, .password-input-div {

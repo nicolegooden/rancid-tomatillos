@@ -70,7 +70,7 @@ class Login extends Component {
               onChange = {this.handleInputChange}
             />
           </div>
-          <button onClick={this.handleLogin}>Login</button>
+          <button className='login-button' onClick={this.handleLogin}>Login</button>
           <p>{this.state.error}</p>
         </form>
       </section>

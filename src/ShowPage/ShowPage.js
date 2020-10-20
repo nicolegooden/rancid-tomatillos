@@ -100,7 +100,7 @@ class ShowPage extends Component {
             <article className='comment-form'>
               <label htmlFor='comment-input'>Write Review: </label>
               <textarea value={this.state.commentInput} onChange={this.handleChange} rows='5' cols='25' wrap='hard' className='comment-input'></textarea>
-              <button onClick={this.submitReview}>Submit</button>
+              <button className='submit-comment-button' onClick={this.submitReview}>Submit</button>
             </article>
             <section className='all-comments'>
               {this.showAllComments()}
