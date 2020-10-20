@@ -8,8 +8,8 @@ function Header(props) {
   return (
     <section className='header'>
       <img className='tomato-image' src={tomato} alt='basic tomato' />
-      <h1 aria-label='1' className='welcome-banner'>{props.determineHeaderText()}</h1>
-        {props.determineLogButtonStatus()}
+      <h1 aria-label='1' className='welcome-banner'>{props.headerText}</h1>
+        {props.logButton}
     </section>
   )
 }
