@@ -8,7 +8,8 @@ class ShowPage extends Component {
     super(props);
     this.state = {
       currentMovie: {},
-      error: ''
+      error: '',
+      commentInput: ''
     }
   }
 
@@ -29,6 +30,14 @@ class ShowPage extends Component {
       })
     }
 
+    handleChange = (event) => {
+      this.setState({ commentInput:  event.target.value})
+    }
+
+    // submitReview = () => {
+
+    // }
+
     render() {
       let userView;
       if (this.state.currentMovie.overview) {
@@ -48,7 +57,11 @@ class ShowPage extends Component {
                         <p className='release-date'>Release Date: {this.state.currentMovie.release_date}</p>
                         <p className='budget'>Budget: ${this.state.currentMovie.budget}</p>
                         <p className='revenue'>Revenue: ${this.state.currentMovie.revenue}</p>
-                        <button className='comment-form-button'>Write Review</button>
+                      </article>
+                      <article className='comment-form'>
+                        <label htmlFor='comment-input'>Write Review: </label>
+                        <textarea onChange={this.handleChange} rows='5' cols='25' wrap='hard' className='comment-input'></textarea>
+                        <button onClick={this.submitReview}>Submit</button>
                       </article>
                     </section>
       } else {
