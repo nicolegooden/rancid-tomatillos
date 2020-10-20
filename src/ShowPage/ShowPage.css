@@ -1,10 +1,28 @@
 .show-page-container {
   background-color: #e5e6eb;
   padding: 3em;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+html {
+  background-color: #e5e6eb;
+}
+
+.show-page-title {
+  text-align: center;
+}
+
+.ratings {
+  display: flex;
+  justify-content: space-around;
 }
 
 .show-page-image {
-  height: 25em;
+  width: 25em;
+  height: 20em;
+  border-radius: 5%;
 }
 
 .genres {
@@ -14,4 +32,72 @@
 .genres > p {
   padding-right: 7px;
 }
-/*  */
+
+.comment-form {
+  text-align: center;
+  display: grid;
+  justify-content: center;;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+
+
+.comment-input {
+  height: 5em;
+  word-wrap: break-word;
+}
+
+.all-comments {
+  height: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.comment-card {
+  margin: 1em;
+  height: 6em;
+  width: 30em;
+  border: solid;
+  border-radius: 5%;
+  text-align: center;
+  overflow: scroll;
+  overflow-wrap: break-word;
+}
+
+.show-page-additional-information {
+  padding: 2em;
+}
+
+.tagline {
+  font-weight: bolder;
+}
+
+.show-page-basic-information {
+  text-align: center;
+}
+
+@media only screen and (max-width: 740px) {
+  .show-page-container {
+    display: block;
+  }
+
+  .show-page-image {
+    width: 20em;
+    height: 15em;
+  }
+
+  .ratings {
+    display: block;
+  }
+
+  .show-page-additional-information {
+    padding: 1em;;
+  }
+}
+
+
