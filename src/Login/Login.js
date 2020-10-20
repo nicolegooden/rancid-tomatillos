@@ -49,7 +49,7 @@ class Login extends Component {
       <section className='login-container'>
         <form className='login-form'>
           <div className='email-input-div'>
-            <label className='login-label' htmlFor='user-email'>email:</label>
+            <label className='login-label' htmlFor='user-email'>Email:</label>
             <input
               className='login-input'
               type='text'
@@ -60,7 +60,7 @@ class Login extends Component {
             />
           </div>
           <div className='password-input-div'>
-            <label className='login-label' htmlFor='user-password'>password:</label>
+            <label className='login-label' htmlFor='user-password'>Password:</label>
             <input
               className='login-input'
               type='password'
