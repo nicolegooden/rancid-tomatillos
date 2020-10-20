@@ -122,6 +122,5 @@ export default ShowPage;
 ShowPage.propTypes = {
   findUserRating: PropTypes.func.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired,
-  getRatingForShowPage: PropTypes.func.isRequired,
-  setRatingForShowPage: PropTypes.func.isRequired
+  user: PropTypes.object.isRequired
 }
