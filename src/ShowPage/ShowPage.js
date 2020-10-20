@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getSingleMovie, postComment } from '../apiCalls';
+import { getSingleMovie, postComment, getComments } from '../apiCalls';
 import './ShowPage.css';
 
 class ShowPage extends Component {
@@ -9,12 +9,28 @@ class ShowPage extends Component {
     this.state = {
       currentMovie: {},
       error: '',
-      commentInput: ''
+      commentInput: '',
+      allComments: []
     }
   }
 
   componentDidMount() {
     this.determineSingleMovie(this.props.id)
+    getComments(this.props.id)
+    .then(comments => this.setState({ allComments: comments.comments }))
+  }
+
+  showAllComments = () => {
+    if (this.state.allComments.length) {
+      return this.state.allComments.map(commentInfo => {
+        return (
+          <article className='comment-card'>
+            <p>Comment: {commentInfo.comment}</p>
+            <p>Author: {commentInfo.author}</p>
+          </article>
+        )
+      })
+    }
   }
 
   determineSingleMovie = (id) => {
@@ -34,14 +50,16 @@ class ShowPage extends Component {
       this.setState({ commentInput:  event.target.value})
     }
 
-    submitReview = () => {
-      postComment(this.props.id, this.state.commentInput, this.props.user.name)
+    submitReview = async () => {
+      await postComment(this.props.id, this.state.commentInput, this.props.user.name)
+      getComments(this.props.id)
+      .then(comments => this.setState({ allComments: comments.comments }))
     }
 
     render() {
       let userView;
       if (this.state.currentMovie.overview) {
-        userView = <section className='show-page-container' >
+        userView = <main className='show-page-container' >
                       <article className='show-page-basic-information'>
                         <h2 className='show-page-title'>{this.props.title}</h2>
                         <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
@@ -63,7 +81,10 @@ class ShowPage extends Component {
                         <textarea onChange={this.handleChange} rows='5' cols='25' wrap='hard' className='comment-input'></textarea>
                         <button onClick={this.submitReview}>Submit</button>
                       </article>
-                    </section>
+                      <section className='all-comments'>
+                        {this.showAllComments()}
+                      </section>
+                    </main>
       } else {
         userView = <h1>Loading your movie</h1>
       }
