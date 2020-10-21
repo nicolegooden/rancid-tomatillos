@@ -17,7 +17,6 @@ describe('MovieCard', () => {
     const mockUser = { email: "charlie@turing.io", id: 81, name: "Charlie"};
     const mockSubmitRating = jest.fn();
     const mockRetrieveAllRatings = jest.fn();
-    // const mockSubmitUserRating = jest.fn();
 
     render(
       <MemoryRouter>
@@ -85,11 +84,11 @@ describe('MovieCard', () => {
         />
       </MemoryRouter>
     )
+
     fireEvent.change(screen.getByRole('spinbutton'), {target: {value: 26}})
     expect(screen.getByRole('spinbutton')).toHaveValue(26)
     userEvent.click(screen.getByText('Submit'))
     expect(screen.getByText("Choose a number between 1 and 10")).toBeInTheDocument()
-    screen.debug()
   })
 
   it('Should allow a user to submit a rating', async () => {
@@ -123,8 +122,12 @@ describe('MovieCard', () => {
 fireEvent.change(screen.getByRole('spinbutton'), {target: {value: 7}})
  expect(screen.getByRole('spinbutton')).toHaveValue(7)
 userEvent.click(screen.getByText('Submit'))
-// expect(submitUserRating).toHaveBeenCalledWith(81, 718444, 7)
-// expect(submitUserRating).toHaveBeenCalledTimes(1)
+expect(submitUserRating).toHaveBeenCalledTimes(1)
+screen.debug()
+expect(submitUserRating).toHaveBeenCalledWith(81, 718444, '7')
+
+// The rest of the functionality for this method needs to be tested, but I cannot determine how to get the next function to fire. I believe that it is an async issue, maybe waiting for the submitUserRating post response, but I am not certain how to mock that out.
+
 // expect(mockRetrieveAllRatings).toHaveBeenCalledTimes(1)
 // const rating = await waitFor(() => screen.getByText('My Rating: 7'));
 // expect(rating).toBeInTheDocument();
