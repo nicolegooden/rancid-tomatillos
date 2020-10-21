@@ -45,7 +45,7 @@ class MovieCard extends Component {
       return (
         <>
           <label htmlFor='Rate Movie'>Rate Movie: </label>
-          <input onChange={this.trackRating} tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
+          <input onChange={this.trackRating} role='spinbutton' tabIndex='0' type='number' min='1' max='10' className='user-rating-input' placeholder='rate me'/><br />
           <button onClick={this.submitRating} className='submit-rating-button'>Submit</button><br />
           { this.state.error &&
           <p>Choose a number between 1 and 10</p> }
@@ -64,6 +64,7 @@ class MovieCard extends Component {
       <article className='movie-card'>
         {this.determineIfLink(path)}
         <h3 className='movie-title'>{ this.props.title }</h3>
+
         <p className='movie-average-rating'>Average Rating: { Math.floor(this.props.averageRating) }</p>
         {this.determineRatingContent()}
       </article>
@@ -76,7 +77,7 @@ MovieCard.propTypes = {
   posterPath: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  averageRating: PropTypes.number.isRequired,
+  averageRating: PropTypes.number,
   userRating: PropTypes.object,
   user: PropTypes.object.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired
