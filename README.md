@@ -1,20 +1,21 @@
 ## Rancid Tomatillos
 This is a paired project for the Turing School of Software & Design.
 
-
 ## Collaborators:
 [Nicole Gooden](https://github.com/nicolegooden)
 
 [Naomi Ware](https://github.com/nware1066)
 
-
 ## Overview:
-
 Rancid Tomatillos is the first project that we have attempted incorporating the React Framework and the Jest Testing Library.
 With this React App, users can see, rate and comment on a variety of movies. The user can login, be directed to a page showing thier movie ratings, and click on any image to see additional details about the movie.
 Users can navigate back to the homepage from any of the other pages, and can also log out to be returned to the homepage.
 
 ## Learning Goals:
++ Solidify React fundamentals
++ Solidify using React Router to create a multi-page user experience
++ Solidify component and asynchronous JS testing
++ Work with and navigate a shared, persistent API using GET, POST, and DELETE requests
 
 ## Tech Used:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -25,10 +26,9 @@ Our workflow was managed with git, using github for the repository and the proje
 Since we are working remotely during the Covid pandemic, we used Slack for daily messages and to share links and snippets of code, and Tuple to share screens and for paired programming.
 
 ## Here is the App in action!
-
 ![User logs in and displays movies, rates movies and navigates to detail page](https://media.giphy.com/media/EkwCg8BYQc8gGrXGtf/giphy.gif)
-## Setup / Installation
 
+## Setup / Installation
 To open this project, follow the steps outlined below.
 
 From the terminal's CLI:
