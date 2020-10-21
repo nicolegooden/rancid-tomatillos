@@ -77,7 +77,7 @@ MovieCard.propTypes = {
   posterPath: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  averageRating: PropTypes.number.isRequired,
+  averageRating: PropTypes.number,
   userRating: PropTypes.object,
   user: PropTypes.object.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired
