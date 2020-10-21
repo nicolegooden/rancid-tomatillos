@@ -4,6 +4,13 @@
   background-color: #e5e6eb;
 }
 
+@media only screen and (min-width: 1260px) {
+  .all-movie-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media only screen and (max-width: 780px) {
   .all-movie-cards {
     display: grid;
