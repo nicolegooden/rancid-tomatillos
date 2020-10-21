@@ -1,6 +1,7 @@
 .movie-card-image {
   height: 15em;
   width: 100%;
+  border-radius: 3%;
 }
 
 .movie-card {
@@ -14,8 +15,9 @@
 
 .movie-card:hover {
   transform: scale(1.04);
-  transform: rotate(3deg);
+  transform: rotate(1.5deg);
   transition: all ease-in-out .3s;
+  box-shadow: 20px 10px 10px grey;
 }
 
 .user-rating-input {
