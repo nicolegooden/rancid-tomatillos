@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getUserData } from '../apiCalls'
 import PropTypes from 'prop-types';
-import { BrowserRouter as Route, Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './Login.css';
 
 
@@ -22,8 +22,7 @@ class Login extends Component {
   clearInputs() {
     this.setState({
       email: '',
-      password: '',
-      // error: ''
+      password: ''
     })
   }
 

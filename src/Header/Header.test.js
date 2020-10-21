@@ -1,16 +1,27 @@
 import React from 'react';
+import { Link, MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
 import Header from './Header';
-
+import { getUserData } from '../apiCalls.js';
+jest.mock('../apiCalls.js');
+ 
 describe('Header', () => {
   
-  it('should render a header section', () => {
+  it('should render a header section on homepage', () => {
 
     const fakeDetermineText = jest.fn();
     const fakeDetermineButton = jest.fn();
-
+    
+    fakeDetermineText.mockReturnValueOnce('Rancid Tomatillos');
+    fakeDetermineButton.mockReturnValueOnce(
+    <MemoryRouter>
+      <Link to="/login">
+        <button className='log-button'>Login</button>
+      </Link>
+    </MemoryRouter>
+    )
+    
     render(
       <Header 
         determineHeaderText={fakeDetermineText}
@@ -19,13 +30,41 @@ describe('Header', () => {
 
     expect(fakeDetermineText).toHaveBeenCalledTimes(1);
     expect(fakeDetermineButton).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole('heading', {level: 2})).toBeInTheDocument();
-    //line 22 gives false positive - how do we fix this?
     expect(screen.getByAltText('basic tomato')).toBeInTheDocument();
-    //if we are rendering elements based on conditional logic, 
-        //how do we test that certain text shows up in the header as
-        //a result of a method being evaluated?
-    //intend to test that the login button says Login and that the
-        //header text says Rancid Tomatillos when user reaches app 
+    expect(screen.getByText('Rancid Tomatillos')).toBeInTheDocument();
+    expect(screen.getByText('Login')).toBeInTheDocument()
+
+  })
+
+  it('should welcome user when logged in and give option to logout', () => {
+    getUserData.mockResolvedValueOnce({
+      user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
+    })
+
+    const fakeDetermineText = jest.fn();
+    const fakeDetermineButton = jest.fn();
+    
+    fakeDetermineText.mockReturnValueOnce('Welcome To Rancid Tomatillos, Charlie');
+    fakeDetermineButton.mockReturnValueOnce(
+    <MemoryRouter>
+      <Link to='/'>
+        <button className='log-button'>
+          Logout
+        </button>
+      </Link>
+    </MemoryRouter>
+    )
+    
+    render(
+      <Header 
+        determineHeaderText={fakeDetermineText}
+        determineLogButtonStatus={fakeDetermineButton}
+      />)
+
+      expect(fakeDetermineText).toHaveBeenCalledTimes(1);
+      expect(fakeDetermineButton).toHaveBeenCalledTimes(1);
+      expect(screen.getByAltText('basic tomato')).toBeInTheDocument();
+      expect(screen.getByText('Welcome To Rancid Tomatillos, Charlie')).toBeInTheDocument();
+      expect(screen.getByText('Logout')).toBeInTheDocument()
   })
 })

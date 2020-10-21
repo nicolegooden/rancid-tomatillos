@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import ShowPage from '../ShowPage/ShowPage'
 import Header from '../Header/Header';
@@ -123,7 +123,8 @@ class App extends Component {
               findUserRating={this.findUserRating}
               retrieveAllRatings={this.retrieveAllRatings}
               getRatingForShowPage={this.getRatingForShowPage}
-              setRatingForShowPage={this.setRatingForShowPage}/>
+              setRatingForShowPage={this.setRatingForShowPage}
+              user={this.state.user}/>
           }}
         />
         <Route exact path='/login'>

@@ -58,17 +58,23 @@
         body: JSON.stringify({})
       }).catch(error => console.log(error))
     }
-
-    export const submitFavorite = (movieID) => {
-      return fetch(`https://localhost:3001/api/v1/favorites`, {
+    export const postComment = (movieID, comment, author) => {
+      return fetch(`http://localhost:3001/api/v1/movies/${movieID}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          movie_id: movieID,
+          comment: comment, 
+          author: author
         })
       })
-        .then(response => response.json())
-        .catch(error => console.log(error))
+      .then(response => response.json())
+      .catch(error => console.log(error))
+    }
+
+    export const getComments = (movieID) => {
+      return fetch(`http://localhost:3001/api/v1/movies/${movieID}/comments`)
+      .then(response => response.json())
+      .catch(error => console.log(error))
     }
