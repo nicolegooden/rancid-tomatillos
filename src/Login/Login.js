@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import './Login.css';
 
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -13,6 +12,10 @@ class Login extends Component {
       password: '',
       error: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.updateLoginView()
   }
 
   handleInputChange = (event) => {
@@ -38,10 +41,6 @@ class Login extends Component {
     this.clearInputs();
   }
 
-  componentDidMount() {
-    this.props.updateLoginView()
-  }
-
   render() {
     if (this.props.user.name) {
       return <Redirect to='/' />
@@ -50,7 +49,7 @@ class Login extends Component {
       <section className='login-container'>
         <form className='login-form'>
           <div className='email-input-div'>
-            <label className='login-label' htmlFor='user-email'>email:</label>
+            <label className='login-label' htmlFor='user-email'>Email:</label>
             <input
               className='login-input'
               type='text'
@@ -61,7 +60,7 @@ class Login extends Component {
             />
           </div>
           <div className='password-input-div'>
-            <label className='login-label' htmlFor='user-password'>password:</label>
+            <label className='login-label' htmlFor='user-password'>Password:</label>
             <input
               className='login-input'
               type='password'
@@ -71,13 +70,12 @@ class Login extends Component {
               onChange = {this.handleInputChange}
             />
           </div>
-          <button onClick={this.handleLogin}>Login</button>
+          <button className='login-button' onClick={this.handleLogin}>Login</button>
           <p>{this.state.error}</p>
         </form>
       </section>
     )
   }
-
 }
 
 Login.propTypes = {

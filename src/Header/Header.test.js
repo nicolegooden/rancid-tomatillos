@@ -10,26 +10,22 @@ describe('Header', () => {
   
   it('should render a header section on homepage', () => {
 
-    const fakeDetermineText = jest.fn();
-    const fakeDetermineButton = jest.fn();
-    
-    fakeDetermineText.mockReturnValueOnce('Rancid Tomatillos');
-    fakeDetermineButton.mockReturnValueOnce(
-    <MemoryRouter>
-      <Link to="/login">
-        <button className='log-button'>Login</button>
-      </Link>
-    </MemoryRouter>
-    )
+    let fakeHeaderText = 'Rancid Tomatillos'
+    let fakeLogButton = 
+      <MemoryRouter>
+        <Link to='/'>
+          <button className='log-button'>
+            Login
+          </button>
+        </Link>
+      </MemoryRouter>;
     
     render(
       <Header 
-        determineHeaderText={fakeDetermineText}
-        determineLogButtonStatus={fakeDetermineButton}
+        headerText={fakeHeaderText}
+        logButton={fakeLogButton}
       />)
 
-    expect(fakeDetermineText).toHaveBeenCalledTimes(1);
-    expect(fakeDetermineButton).toHaveBeenCalledTimes(1);
     expect(screen.getByAltText('basic tomato')).toBeInTheDocument();
     expect(screen.getByText('Rancid Tomatillos')).toBeInTheDocument();
     expect(screen.getByText('Login')).toBeInTheDocument()
@@ -41,30 +37,25 @@ describe('Header', () => {
       user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}
     })
 
-    const fakeDetermineText = jest.fn();
-    const fakeDetermineButton = jest.fn();
+    let fakeHeaderText = 'Welcome Back, Charlie'
+    let fakeLogButton = 
+      <MemoryRouter>
+        <Link to='/'>
+          <button className='log-button'>
+            Logout
+          </button>
+        </Link>
+      </MemoryRouter>;
     
-    fakeDetermineText.mockReturnValueOnce('Welcome To Rancid Tomatillos, Charlie');
-    fakeDetermineButton.mockReturnValueOnce(
-    <MemoryRouter>
-      <Link to='/'>
-        <button className='log-button'>
-          Logout
-        </button>
-      </Link>
-    </MemoryRouter>
-    )
     
     render(
       <Header 
-        determineHeaderText={fakeDetermineText}
-        determineLogButtonStatus={fakeDetermineButton}
+        headerText={fakeHeaderText}
+        logButton={fakeLogButton}
       />)
 
-      expect(fakeDetermineText).toHaveBeenCalledTimes(1);
-      expect(fakeDetermineButton).toHaveBeenCalledTimes(1);
       expect(screen.getByAltText('basic tomato')).toBeInTheDocument();
-      expect(screen.getByText('Welcome To Rancid Tomatillos, Charlie')).toBeInTheDocument();
+      expect(screen.getByText('Welcome Back, Charlie')).toBeInTheDocument();
       expect(screen.getByText('Logout')).toBeInTheDocument()
   })
 })

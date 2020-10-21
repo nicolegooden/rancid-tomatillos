@@ -34,6 +34,5 @@ MovieContainer.propTypes = {
   user: PropTypes.object,
   allMovies: PropTypes.array.isRequired,
   userRatings: PropTypes.array,
-  determineShowPageButton: PropTypes.func,
   retrieveAllRatings: PropTypes.func.isRequired
 }

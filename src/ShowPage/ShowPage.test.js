@@ -3,11 +3,18 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ShowPage from './ShowPage.js';
 import { MemoryRouter } from 'react-router-dom';
-import { getSingleMovie, getAllRatings } from '../apiCalls.js';
+import { getSingleMovie, getAllRatings, getComments } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('Show Page', () => {
   it('should render a loading message if movie details don\'t load', () => {
+
+    getComments.mockResolvedValueOnce({
+      comments: [
+        {comment: 'EPIC movie! Must see!!!', author: 'Charlie', movieId: 1, id: 101},
+        {comment: 'Absolutely a NO.', author: 'Rebecca', movieId: 1, id: 102}
+      ]
+    })
 
     getSingleMovie.mockResolvedValueOnce({
       movie: {
@@ -47,6 +54,13 @@ describe('Show Page', () => {
 
   it('should render with movie details', async () => {
 
+    getComments.mockResolvedValueOnce({
+      comments: [
+        {comment: 'EPIC movie! Must see!!!', author: 'Charlie', movieId: 1, id: 101},
+        {comment: 'Absolutely a NO.', author: 'Rebecca', movieId: 1, id: 102}
+      ]
+    })
+
     getSingleMovie.mockResolvedValueOnce({
       movie: {
       id: 1,
@@ -85,13 +99,19 @@ describe('Show Page', () => {
     expect(fakeRetrieveAllRatings).toHaveBeenCalledTimes(1);
     expect(screen.getByText('Harry Potter')).toBeInTheDocument();
     expect(screen.getByText('Release Date: 1999-06-15')).toBeInTheDocument();
-    expect(screen.getByText('Budget: $7500')).toBeInTheDocument();
     expect(screen.getByText('You\'re a wizard, Harry')).toBeInTheDocument();
     expect(screen.getByText('Runtime: 178 minutes')).toBeInTheDocument();
   })
 
   it('should fire findUserRating when given all user ratings', async () => {
     
+    getComments.mockResolvedValueOnce({
+      comments: [
+        {comment: 'EPIC movie! Must see!!!', author: 'Charlie', movieId: 1, id: 101},
+        {comment: 'Absolutely a NO.', author: 'Rebecca', movieId: 1, id: 102}
+      ]
+    })
+
     const fakeFindUserRating = jest.fn();
     const fakeRetrieveAllRatings = jest.fn();
 
@@ -136,7 +156,7 @@ describe('Show Page', () => {
     const genre = await waitFor(() => screen.getByText('Genres: Action Adventure'));
     expect(genre).toBeInTheDocument();
     expect(fakeRetrieveAllRatings).toHaveBeenCalledTimes(1);
-    expect(fakeFindUserRating).toHaveBeenCalledTimes(2);
+    expect(fakeFindUserRating).toHaveBeenCalledTimes(4);
     expect(fakeFindUserRating).toHaveBeenCalledWith(1)
     expect(screen.getByText('My Rating: 10/10')).toBeInTheDocument();
   })

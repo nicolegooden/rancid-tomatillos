@@ -20,7 +20,6 @@ class App extends Component {
     };
     this.setUser = this.setUser.bind(this);
     this.retrieveAllRatings = this.retrieveAllRatings.bind(this);
-    this.getRatingForShowPage = this.getRatingForShowPage.bind(this);
   }
 
   componentDidMount() {
@@ -46,18 +45,9 @@ class App extends Component {
     })
   }
 
-  getRatingForShowPage(movieID) {
-    let singleRating = this.state.userRatings.find(ratingInfo => {
-      return ratingInfo.movie_id === movieID
-    })
-    if (singleRating) {
-      return singleRating.rating;
-    }
-  }
-
   determineHeaderText = () => {
     if (this.state.user.name) {
-      return `Welcome To Rancid Tomatillos, ${this.state.user.name}`
+      return `Welcome Back, ${this.state.user.name}`
     } else {
       return 'Rancid Tomatillos'
     }
@@ -103,14 +93,13 @@ class App extends Component {
     return (
       <main>
         <Header
-          determineHeaderText={this.determineHeaderText}
-          determineLogButtonStatus={this.determineLogButtonStatus}
+          headerText={this.determineHeaderText()}
+          logButton={this.determineLogButtonStatus()}
         />
         <Route exact path='/'>
           <MovieContainer
             user={this.state.user}
             allMovies={this.state.movies}
-            determineShowPageButton={this.determineShowPageButton}
             userRatings={this.state.userRatings}
             retrieveAllRatings={this.retrieveAllRatings}
             />
@@ -122,8 +111,6 @@ class App extends Component {
             return <ShowPage {...singleMovie}
               findUserRating={this.findUserRating}
               retrieveAllRatings={this.retrieveAllRatings}
-              getRatingForShowPage={this.getRatingForShowPage}
-              setRatingForShowPage={this.setRatingForShowPage}
               user={this.state.user}/>
           }}
         />

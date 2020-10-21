@@ -15,4 +15,16 @@
   height: 4em;
   margin-right: 1em;
   margin-top: 1em;
+  border-radius: 10%;
+}
+
+.log-button:hover {
+  cursor: pointer;
+  background-color: #ddf5f9;
+}
+
+@media only screen and (max-width: 470px) {
+  .welcome-banner {
+    display: none;
+  }
 }

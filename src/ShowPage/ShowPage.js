@@ -65,6 +65,16 @@ class ShowPage extends Component {
       .then(() => this.clearInputs())
     }
 
+    determineUserRating = () => {
+      if (this.props.findUserRating(this.props.id) > 0) {
+        return (
+          <p className='user-rating'>
+            My Rating: {this.props.findUserRating(this.props.id)}/10
+          </p>
+        )
+      }
+    }
+
     render() {
       let userView;
       if (this.state.currentMovie.overview) {
@@ -76,9 +86,8 @@ class ShowPage extends Component {
                 <img className='show-page-image' alt='poster for {this.props.title}' src={ this.state.currentMovie.backdrop_path }/>
                 <p className='tagline'>{this.state.currentMovie.tagline}</p>
                 <article className='ratings'>
-                   <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
-                   {this.props.findUserRating(this.props.id) > 0 &&
-                   <p className='user-rating'>My Rating: {this.props.findUserRating(this.props.id)}/10</p>}
+                  <p className='show-page-average-rating'>Average Rating: {Math.floor(this.props.average_rating)}/10</p>
+                  {this.determineUserRating()}
                 </article>
               </article>
               <article className='show-page-additional-information'>
@@ -91,7 +100,7 @@ class ShowPage extends Component {
             <article className='comment-form'>
               <label htmlFor='comment-input'>Write Review: </label>
               <textarea value={this.state.commentInput} onChange={this.handleChange} rows='5' cols='25' wrap='hard' className='comment-input'></textarea>
-              <button onClick={this.submitReview}>Submit</button>
+              <button className='submit-comment-button' onClick={this.submitReview}>Submit</button>
             </article>
             <section className='all-comments'>
               {this.showAllComments()}
@@ -113,6 +122,5 @@ export default ShowPage;
 ShowPage.propTypes = {
   findUserRating: PropTypes.func.isRequired,
   retrieveAllRatings: PropTypes.func.isRequired,
-  getRatingForShowPage: PropTypes.func.isRequired,
-  setRatingForShowPage: PropTypes.func.isRequired
+  user: PropTypes.object.isRequired
 }

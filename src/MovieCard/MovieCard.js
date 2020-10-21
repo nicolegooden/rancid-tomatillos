@@ -13,7 +13,7 @@ class MovieCard extends Component {
     }
   }
 
-  editRating = (event) => {
+  editRating = () => {
     deleteRating(this.props.user.id, this.props.userRating.id)
     .then(() => this.props.retrieveAllRatings())
   }
@@ -22,7 +22,7 @@ class MovieCard extends Component {
     this.setState({inputRating: event.target.value})
   }
 
-  submitRating = (event) => {
+  submitRating = () => {
     if (this.state.inputRating >= 1 && this.state.inputRating <= 10) {
       this.setState({error: false})
       submitUserRating(this.props.user.id, this.props.id, this.state.inputRating)

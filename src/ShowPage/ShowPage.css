@@ -25,6 +25,15 @@ html {
   border-radius: 5%;
 }
 
+.submit-comment-button {
+  border-radius: 10%;
+}
+
+.submit-comment-button:hover {
+  cursor: pointer;
+  background-color: #ddf5f9;
+}
+
 .genres {
   display: flex;
 }

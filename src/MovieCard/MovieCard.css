@@ -8,9 +8,25 @@
   margin: 2em;
   text-align: center;
   background-color: #fdf9f9;
+  border-radius: 5%;
+  box-shadow: 10px 5px 5px grey;
+}
+
+.movie-card:hover {
+  transform: scale(1.04);
+  transform: rotate(3deg);
+  transition: all ease-in-out .3s;
 }
 
 .user-rating-input {
   width: 5em;
 }
 
+.submit-rating-button, .edit-user-rating {
+  border-radius: 10%;
+}
+
+.submit-rating-button:hover, .edit-user-rating:hover {
+  cursor: pointer;
+  background-color: #ddf5f9;
+}

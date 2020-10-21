@@ -4,12 +4,11 @@ import './Header.css';
 import tomato from '../tomato.png'
 
 function Header(props) {
-
   return (
     <section className='header'>
       <img className='tomato-image' src={tomato} alt='basic tomato' />
-      <h1 aria-label='1' className='welcome-banner'>{props.determineHeaderText()}</h1>
-        {props.determineLogButtonStatus()}
+      <h1 aria-label='1' className='welcome-banner'>{props.headerText}</h1>
+        {props.logButton}
     </section>
   )
 }
@@ -17,6 +16,6 @@ function Header(props) {
 export default Header;
 
 Header.propTypes = {
-  determineHeaderText: PropTypes.func.isRequired,
-  determineLogButtonStatus: PropTypes.func.isRequired
+  headerText: PropTypes.string.isRequired,
+  logButton: PropTypes.object.isRequired
 }
