@@ -43,7 +43,7 @@ class Login extends Component {
 
   render() {
     if (this.props.user.name) {
-      return <Redirect to='/' />
+      return <Redirect to='/rancid-tomatillos' />
     }
     return (
       <section className='login-container'>

@@ -69,9 +69,9 @@ class App extends Component {
 
   determineLogButtonStatus = () => {
     if (this.state.user.name) {
-      return <Link to='/'><button className='log-button' onClick={this.logOutUser}>Logout</button></Link>
+      return <Link to='/rancid-tomatillos'><button className='log-button' onClick={this.logOutUser}>Logout</button></Link>
     } else if (this.state.hasLoginView) {
-      return <Link to='/'><button className='log-button' onClick={this.returnGuestToHomepage}>Back to Homepage</button></Link>
+      return <Link to='/rancid-tomatillos'><button className='log-button' onClick={this.returnGuestToHomepage}>Back to Homepage</button></Link>
     }
     else {
       return <Link to="/login"><button className='log-button'>Login</button></Link>
@@ -96,7 +96,7 @@ class App extends Component {
           headerText={this.determineHeaderText()}
           logButton={this.determineLogButtonStatus()}
         />
-        <Route exact path='/'>
+        <Route exact path='/rancid-tomatillos'>
           <MovieContainer
             user={this.state.user}
             allMovies={this.state.movies}
