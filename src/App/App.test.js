@@ -9,7 +9,8 @@ jest.mock('../apiCalls.js');
 
 describe('App', () => {
   it('should render the App component', async () => {
-    getMovies.mockResolvedValue([
+    getMovies.mockResolvedValueOnce({
+      movies: [
         {
           average_rating: 5.5, 
           backdrop_path: 'https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg',
@@ -34,7 +35,7 @@ describe('App', () => {
           release_date: '2020-08-20',
           title: 'Rogue'
         }
-      ])
+      ]})
   
     render(
       <MemoryRouter>

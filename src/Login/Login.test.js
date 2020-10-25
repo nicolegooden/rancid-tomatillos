@@ -149,10 +149,7 @@ describe('Login', () => {
       expect(screen.getByPlaceholderText('enter password')).toHaveValue('qwerty');
 
       userEvent.click(screen.getByText('Login'));
-      expect(fakeSetUser).toHaveBeenCalledWith({user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}})
+      await waitFor(() => expect(fakeSetUser).toHaveBeenCalledWith({user: {id: 81, name: 'Charlie', email: 'charlie@turing.io'}}))
       expect(fakeSetUser).toHaveBeenCalledTimes(1);
-      // lines 152 and 153 are failing - stating fakeSetUser has not been called
-        //I've mocked the resolved value of the user object (needed during click event),
-        //but it the function passed as a prop (setUser) is not being fired.
     })
 })
