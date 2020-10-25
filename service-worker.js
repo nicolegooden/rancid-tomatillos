@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/rancid-tomatillos/precache-manifest.b182729cc370a1514f26c5be1c233136.js"
+  "/rancid-tomatillos/precache-manifest.34ed6479cf95acab3be77004a87921e3.js"
 );
 
 self.addEventListener('message', (event) => {
