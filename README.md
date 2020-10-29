@@ -7,9 +7,17 @@ This is a paired project for the Turing School of Software & Design.
 [Naomi Ware](https://github.com/nware1066)
 
 ## Overview:
-Rancid Tomatillos is the first project that we have attempted incorporating the React Framework and the Jest Testing Library.
-With this React App, users can see, rate and comment on a variety of movies. The user can login, be directed to a page showing thier movie ratings, and click on any image to see additional details about the movie.
+As a user of Rancid Tomatillos, you can see, rate, and comment on a variety of movies. The user can log in, be directed to a page showing their movie ratings, and click on any image to see additional details about the movie.
 Users can navigate back to the homepage from any of the other pages, and can also log out to be returned to the homepage.
+
+## Deployed App:
+[Rancid Tomatillos](https://nicolegooden.github.io/rancid-tomatillos/) is deployed via GitHub pages.
+
+The login feature requires a valid email address and password:
++ Email: charlie@turing.io
++ Password: qwerty
+
+Currently, the commenting feature is supported by a locally run server; until deployed, the commenting feature will not have complete functionality.  To get this up and running, follow the installation instructions for the Express server.
 
 ## Learning Goals:
 + Solidify React fundamentals
@@ -20,12 +28,12 @@ Users can navigate back to the homepage from any of the other pages, and can als
 ## Tech Used:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Rancid Tomatillos is the first project that we have attempted incorporating the React Framework and the Jest Testing Library.
+Rancid Tomatillos implements React, React Testing Library, and Jest.
 We used React Router so that we could have a Single Page Application with the user experience of multiple pages.
-Our workflow was managed with git, using github for the repository and the project board with our issue tickets to allow for collaborative project planning.
-Since we are working remotely during the Covid pandemic, we used Slack for daily messages and to share links and snippets of code, and Tuple to share screens and for paired programming.
+Our workflow was managed with git, using GitHub for the repository and the project board with our issue tickets to allow for collaborative project planning.
+Since we are working remotely, we have used Slack for daily messages and to share links and snippets of code; Tuple has been utilized to share screens and pair.
 
-## Here is the App in action!
+## Rancid Tomatillos in action!
 ![User logs in and displays movies, rates movies and navigates to detail page](https://media.giphy.com/media/EkwCg8BYQc8gGrXGtf/giphy.gif)
 
 ## Setup / Installation
@@ -75,4 +83,4 @@ To overcome this challenge, we have leaned on `async / await` and chaining `.the
 ## Next Steps:
 In the future, adding functions to allow the user to select and display favorite movies can be added. Additional CSS could be included, particularly for the Header and perhaps with a richer color scheme, although the subtle color scheme currently in use has its own charm.
 
-We plan to deploy the application for those individuals whose sole goal is to use the application, rather than view and manipulate the code. Furthermore, it would make for a better user experience if the user could view the details from the movie show page without being logged in.
+We plan to incorporate more sad path testing and error handling for invalid routes. Furthermore, it would make for a better user experience if the user could view the details from the movie show page without being logged in.
